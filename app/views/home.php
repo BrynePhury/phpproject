@@ -12,7 +12,7 @@
 
         <!-- Prevent the demo from appearing in search engines -->
         <meta name="robots"
-              content="noindex">
+              content="nohome">
 
         <!-- Perfect Scrollbar -->
         <link type="text/css"
@@ -105,7 +105,7 @@
                             </button>
 
                             <!-- Navbar Brand -->
-                            <a href="index.html"
+                            <a href="home.html"
                                class="navbar-brand ">
 
                                 <svg class="mr-2"
@@ -120,7 +120,7 @@
                             </a>
 
                             <form class="search-form d-none d-sm-flex flex"
-                                  action="index.html">
+                                  action="home.html">
                                 <button class="btn"
                                         type="submit"><i class="material-icons">search</i></button>
                                 <input type="text"
@@ -309,7 +309,7 @@
                                         </div>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item active"
-                                           href="index.html"><i class="material-icons">dvr</i> Dashboard</a>
+                                           href="home.html"><i class="material-icons">dvr</i> Dashboard</a>
                                         <a class="dropdown-item"
                                            href="profile.html"><i class="material-icons">account_circle</i> My profile</a>
                                         <a class="dropdown-item"
@@ -1528,26 +1528,26 @@
                                             id="dashboards_menu">
                                             <li class="sidebar-menu-item active">
                                                 <a class="sidebar-menu-button"
-                                                   href="index.html">
-                                                    <span class="sidebar-menu-text">Default</span>
+                                                   href="home.html">
+                                                    <span class="sidebar-menu-text">Home</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="analytics.html">
-                                                    <span class="sidebar-menu-text">Analytics</span>
+                                                   href="./controllers/classes.php">
+                                                    <span class="sidebar-menu-text">Classes</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
                                                    href="staff.html">
-                                                    <span class="sidebar-menu-text">Staff</span>
+                                                    <span class="sidebar-menu-text">invoices</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
                                                    href="ecommerce.html">
-                                                    <span class="sidebar-menu-text">E-commerce</span>
+                                                    <span class="sidebar-menu-text">invoices</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
@@ -1782,7 +1782,7 @@
                                             id="layouts_menu">
                                             <li class="sidebar-menu-item active">
                                                 <a class="sidebar-menu-button"
-                                                   href="index.html">
+                                                   href="home.html">
                                                     <span class="sidebar-menu-text">Default</span>
                                                 </a>
                                             </li>
@@ -1962,7 +1962,7 @@
                                             </div>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item active"
-                                               href="index.html">Dashboard</a>
+                                               href="home.html">Dashboard</a>
                                             <a class="dropdown-item"
                                                href="profile.html">My profile</a>
                                             <a class="dropdown-item"
@@ -1995,7 +1995,7 @@
         <div id="app-settings">
             <app-settings layout-active="default"
                           :layout-location="{
-      'default': 'index.html',
+      'default': 'home.html',
       'fixed': 'fixed-dashboard.html',
       'fluid': 'fluid-dashboard.html',
       'mini': 'mini-dashboard.html'

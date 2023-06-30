@@ -37,12 +37,14 @@ Class Login extends Controller
             'email' => $email,
             // 'password' => $password
         ];
-        $result = $this->db->read($query, $data);
+        $user = $this->db->read($query, $data);
 
-        if ($result) {
+        if ($user) {
             // Successful login
             // You can perform any necessary actions here (e.g., set session variables, redirect to a dashboard page)
 
+			$_SESSION['user'] = $user;
+				
             echo "<script>alert('Log in Success');
                 location=('http://localhost/membership/public/home');
                 </script>";
