@@ -6,6 +6,7 @@ Class Classes extends Controller
 	{
  	 	
  	 	$data['page_title'] = "Classes";
+		
 		$this->view("classes",$data);
 	}
 

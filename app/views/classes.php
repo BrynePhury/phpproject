@@ -10,6 +10,68 @@
               content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Classes Dashboard</title>
 
+        <style>
+            /* Styles for the dialog */
+            .dialog-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            }
+
+            .dialog {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background: #f1f1f1;
+            border-radius: 5px;
+            z-index: 10000;
+            }
+
+            .dialog-title {
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            }
+
+            .dialog-message {
+            margin-bottom: 20px;
+            }
+
+            .dialog-buttons {
+            text-align: right;
+            }
+
+            .dialog-buttons button {
+            margin-left: 10px;
+            }
+
+            /* Styles for full-page overlay */
+            .page-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            }
+
+            .dialog-container {
+            position: relative;
+            z-index: 9999;
+            }
+        </style>
+
         <!-- Prevent the demo from appearing in search engines -->
         <meta name="robots"
               content="noindex">
@@ -344,101 +406,23 @@
                                         <ol class="breadcrumb mb-0">
                                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                                             <li class="breadcrumb-item active"
-                                                aria-current="page">Analytics</li>
+                                                aria-current="page">Classes</li>
                                         </ol>
                                     </nav>
-                                    <h1 class="m-0">Analytics</h1>
+                                    <h1 class="m-0">Classes</h1>
                                 </div>
-                                <a href=""
-                                   class="btn btn-success ml-3">New Report</a>
+                                <a
+                                    href="http://localhost/membership/public/classes_form"
+                                   class="btn btn-success ml-3">Add Class</a>
                             </div>
                         </div>
 
                         <div class="container-fluid page__container">
 
-                            <div class="alert alert-soft-warning d-flex align-items-center card-margin"
-                                 role="alert">
-                                <i class="material-icons mr-3">error_outline</i>
-                                <div class="text-body"><strong>API gateways are now Offline.</strong> Please try the API later. If you want to stay up to date follow our <a href="">Status Page </a></div>
-                            </div>
-
-                            <div class="card card-body px-3 d-flex flex-row align-items-center"
-                                 role="alert">
-                                <span class="badge badge-outline-warning mr-md-2">BOILERPLATES AVAILABLE</span>
-                                <span class="flex">Did you know FlowDash will include ready-to-go <a href="#">Rails 5</a> &amp; <a href="#">Laravel 5.4</a> boilerplates.</span>
-                                <a href=""
-                                   class="ml-3"><i class="material-icons">arrow_forward</i></a>
-                            </div>
-
-                            <div class="row card-group-row">
-                                <div class="col-xl-3 col-md-6 card-group-row__col">
-                                    <div class="card card-group-row__card card-body flex-row align-items-center">
-                                        <div class="position-relative mr-2">
-                                            <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
-                                                <h3 class="text-danger mb-0">12%</h3>
-                                                <small class="text-uppercase">Today</small>
-                                            </div>
-                                            <canvas width="90"
-                                                    height="90"
-                                                    class="position-relative z-1"
-                                                    data-toggle="progress-chart"
-                                                    data-progress-chart-value="12"
-                                                    data-progress-chart-color="danger"
-                                                    data-progress-chart-tone="300"></canvas>
-                                        </div>
-                                        <!-- <div><i class="material-icons icon-muted icon-40pt mr-3">gps_fixed</i></div> -->
-                                        <div class="flex">
-                                            <div class="text-amount">&dollar;1,020</div>
-                                            <div class="text-muted mt-1">Total Sales</div>
-                                            <!-- <div class="text-stats text-success">31.5% <i class="material-icons">arrow_upward</i></div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 card-group-row__col">
-                                    <div class="card card-group-row__card card-body flex-row align-items-center">
-                                        <div class="position-relative mr-2">
-                                            <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
-                                                <h3 class="text-success mb-0">68%</h3>
-                                                <small class="text-uppercase">Month</small>
-                                            </div>
-                                            <canvas width="90"
-                                                    height="90"
-                                                    class="position-relative z-1"
-                                                    data-toggle="progress-chart"
-                                                    data-progress-chart-value="68"
-                                                    data-progress-chart-color="success"
-                                                    data-progress-chart-tone="400"></canvas>
-                                        </div>
-                                        <!-- <div><i class="material-icons icon-muted icon-40pt mr-3">monetization_on</i></div> -->
-                                        <div class="flex">
-                                            <div class="text-amount">&dollar;6,670</div>
-                                            <div class="text-muted mt-1">Sales for June</div>
-                                            <!-- <div class="text-stats text-success">51.5% <i class="material-icons">arrow_upward</i></div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 card-group-row__col">
-                                    <div class="card card-group-row__card card-body flex-row align-items-center">
-                                        <div><i class="material-icons text-primary icon-48pt mr-2">account_circle</i></div>
-                                        <div class="flex">
-                                            <div class="text-amount">87%</div>
-                                            <div class="text-muted mt-1">Sign-Up Percentage</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 card-group-row__col">
-                                    <div class="card card-group-row__card card-body flex-row align-items-center">
-                                        <div><i class="material-icons text-success icon-48pt mr-2">check_circle</i></div>
-                                        <div class="flex">
-                                            <div class="h4 mb-0">Network Stats</div>
-                                            <div class="text-muted mt-1">All systems working!</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                             <div class="row">
-                                <div class="col-lg-7">
+                                <!-- <div class="col-lg-7">
                                     <div class="card dashboard-area-tabs"
                                          id="dashboard-area-tabs">
                                         <div class="card-header p-0 bg-white nav">
@@ -499,13 +483,13 @@
                                             <div class="card-header__title  mb-2">Purchases</div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-lg-5">
                                     <div class="card">
-                                        <div class="card-header card-header-large bg-white">
+                                        <!-- <div class="card-header card-header-large bg-white">
                                             <h4 class="card-header__title">Revenue by location</h4>
-                                        </div>
-                                        <div class="card-body">
+                                        </div> -->
+                                        <!-- <div class="card-body">
                                             <div id="vector-map-revenue"
                                                  class="map mb-3"
                                                  data-toggle="vector-map"
@@ -520,7 +504,7 @@
             }'>
                                             </div>
 
-                                            <ul class="list-unstyled dashboard-location-tabs nav flex-column m-0"
+                                             <ul class="list-unstyled dashboard-location-tabs nav flex-column m-0"
                                                 role="tablist">
                                                 <li data-toggle="vector-map-focus"
                                                     data-target="#vector-map-revenue"
@@ -597,16 +581,16 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                            </ul>
-                                        </div>
+                                            </ul> 
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg">
-                                    <div class="card">
-                                        <div class="card-header card-header-large bg-white d-flex align-items-center">
+                                    <!-- <div class="card">
+                                         <div class="card-header card-header-large bg-white d-flex align-items-center">
                                             <h4 class="card-header__title flex m-0">Recent Activity</h4>
                                             <div data-toggle="flatpickr"
                                                  data-flatpickr-wrap="true"
@@ -1013,11 +997,11 @@
                                             <div class="tab-pane"
                                                  id="activity_quotes"></div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-lg">
                                     <div class="row card-group-row">
-                                        <div class="col-lg-6 card-group-row__col">
+                                        <!-- <div class="col-lg-6 card-group-row__col">
                                             <div class="card card-group-row__card card-body card-body-x-lg"
                                                  style="position: relative; padding-bottom: calc(80px - 1.25rem); overflow: hidden; z-index: 0;">
                                                 <div class="card-header__title text-muted mb-2">Products</div>
@@ -1028,8 +1012,8 @@
                                                     <canvas id="productsChart"></canvas>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6 card-group-row__col">
+                                        </div> -->
+                                        <!-- <div class="col-lg-6 card-group-row__col">
                                             <div class="card card-group-row__card card-body card-body-x-lg"
                                                  style="position: relative; padding-bottom: calc(80px - 1.25rem); overflow: hidden; z-index: 0;">
                                                 <div class="card-header__title text-muted mb-2">Courses</div>
@@ -1040,9 +1024,9 @@
                                                     <canvas id="coursesChart"></canvas>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
-                                    <div class="card">
+                                    <!-- <div class="card">
                                         <div class="card-header card-header-large bg-white d-flex align-items-center">
                                             <h4 class="card-header__title flex m-0">Stats by Location</h4>
                                             <i class="material-icons icon-muted ml-3">expand_more</i>
@@ -1109,13 +1093,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg">
-                                    <div class="card">
+                                    <!-- <div class="card">
                                         <div class="card-header card-header-large bg-white d-flex align-items-center">
                                             <h4 class="card-header__title flex m-0">TODO List</h4>
                                             <div><a href="#"
@@ -1176,10 +1160,10 @@
                                         <div class="card-footer text-center">
                                             15 <span class="text-muted">of 100</span> <a href="#"><i class="material-icons icon-muted float-right">arrow_forward</i></a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-lg">
-                                    <div class="card">
+                                    <!-- <div class="card">
                                         <div class="card-header card-header-large bg-white">
                                             <h4 class="card-header__title">Team Skills</h4>
                                         </div>
@@ -1267,11 +1251,11 @@
                                                 <span class="text-muted">View All</span>
                                             </a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="card-header card-header-large bg-white">
                                     <h4 class="card-header__title">Current Users</h4>
                                 </div>
@@ -1609,7 +1593,7 @@
                                        class="text-muted-light"><i class="material-icons ml-1">arrow_forward</i></a>
                                 </div>
 
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>
@@ -2108,6 +2092,51 @@
       'mini': 'mini-classes.php'
     }"></app-settings>
         </div>
+
+        
+        <div id="dialogContainer" class="dialog-container">
+            <div id="dialogOverlay" class="dialog-overlay"></div>
+
+            <div id="dialog" class="dialog">
+            <h2 class="dialog-title">AlertDialog Title</h2>
+            <form>
+                <div class="text-field">
+                <label for="field1">Field 1:</label>
+                <input type="text" id="field1" name="field1">
+                </div>
+                <div class="text-field">
+                <label for="field2">Field 2:</label>
+                <input type="text" id="field2" name="field2">
+                </div>
+                <div class="text-field">
+                <label for="field3">Field 3:</label>
+                <input type="text" id="field3" name="field3">
+                </div>
+                <div class="dialog-buttons">
+                <button type="submit">Submit</button>
+                </div>
+            </form>
+            </div>
+        </div>
+
+        <script>
+            // JavaScript code to show and hide the dialog
+            document.addEventListener('DOMContentLoaded', function() {
+            var dialogContainer = document.getElementById('dialogContainer');
+            var showDialogButton = document.getElementById('showDialogButton');
+            var dialogOverlay = document.getElementById('dialogOverlay');
+
+            showDialogButton.addEventListener('click', function() {
+                dialogContainer.style.display = 'block';
+                dialogOverlay.style.display = 'block';
+            });
+
+            dialogOverlay.addEventListener('click', function() {
+                dialogContainer.style.display = 'none';
+                dialogOverlay.style.display = 'none';
+                });
+            });
+        </script>
 
         <!-- jQuery -->
         <script src="<?=ASSETS?>/vendor/jquery.min.js"></script>

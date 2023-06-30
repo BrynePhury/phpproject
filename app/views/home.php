@@ -1528,13 +1528,13 @@
                                             id="dashboards_menu">
                                             <li class="sidebar-menu-item active">
                                                 <a class="sidebar-menu-button"
-                                                   href="home.html">
+                                                   href="home.php">
                                                     <span class="sidebar-menu-text">Home</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="./controllers/classes.php">
+                                                   href="http://localhost/membership/public/classes">
                                                     <span class="sidebar-menu-text">Classes</span>
                                                 </a>
                                             </li>
