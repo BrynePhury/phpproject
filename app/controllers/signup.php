@@ -13,8 +13,7 @@ class Signup extends Controller
         $this->view("signup", $data);
     }
 
-    public function handleSignupForm()
-    {
+    public function handleSignupForm(){
         // Retrieve form data
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
@@ -22,18 +21,31 @@ class Signup extends Controller
         $contact2 = $_POST['contact2'];
         $email = $_POST['email'];
         $id_number = $_POST['id_number'];
-        // Access the uploaded file information
         $cv = $_FILES['cv'];
 
-        // Process the form data and perform necessary actions (e.g., store data in database, send emails, etc.)
+        // Validate file format
+        $allowedExtensions = array('pdf');
+        $fileExtension = strtolower(pathinfo($cv['name'], PATHINFO_EXTENSION));
 
-        // Example: Display the retrieved data
-        echo "First Name: $first_name<br>";
-        echo "Last Name: $last_name<br>";
-        echo "Contact 1: $contact1<br>";
-        echo "Contact 2: $contact2<br>";
-        echo "Email: $email<br>";
-        echo "ID Number: $id_number<br>";
-        echo "CV: " . $cv['name']; // Example to display the uploaded file name
+        if (!in_array($fileExtension, $allowedExtensions)) {
+            echo "Invalid file format. Only PDF files are allowed.";
+            return;
+        }
+
+        // Insert data into the members table
+        $query = "INSERT INTO members (fname, lname, contact1, contact2, email, id_number, cv_file) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $data = array($first_name, $last_name, $contact1, $contact2, $email, $id_number, $cv['name']);
+
+        // Create an instance of the Database class
+        $db = new Database();
+
+        // Insert the data into the table
+        if ($db->write($query, $data)) {
+            echo "Signup successful";
+        } else {
+            echo "Signup failed";
+        }
     }
+
+
 }
