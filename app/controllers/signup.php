@@ -41,9 +41,17 @@ class Signup extends Controller
 
         // Insert the data into the table
         if ($db->write($query, $data)) {
-            echo "Signup successful";
+
+            echo "<script>alert('Registered Succesfully');
+                location=('http://localhost/membership/public/login');
+                </script>";
+
+            // header("Location:". ROOT . "login");
+		    // die;
         } else {
-            echo "Signup failed";
+            echo "<script>
+                    alert('Registered Succesfully');
+                </script>";
         }
     }
 

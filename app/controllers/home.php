@@ -5,13 +5,7 @@ Class Home extends Controller
 	function index()
 	{
  	 	
- 	 	$data['page_title'] = "Home";
-
-		  $user = $this->loadModel("user");
-
- 	 		header("Location:". ROOT . "signup");
-			die;
- 	 		
+ 	 	$data['page_title'] = "Home";	
 
 		$this->view("home",$data);
 	}

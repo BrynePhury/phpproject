@@ -78,7 +78,7 @@
             <h4 class="m-0">Welcome back!</h4>
             <p class="mb-5">Login to access your Stack Account </p>
 
-            <form action="index.html"
+            <form href="./app/controllers/login.php"  method="post"
                   novalidate>
                 <div class="form-group">
                     <label class="text-label"
@@ -86,6 +86,7 @@
                     <div class="input-group input-group-merge">
                         <input id="email_2"
                                type="email"
+                               name="email"
                                required=""
                                class="form-control form-control-prepended"
                                placeholder="john@doe.com">
@@ -102,6 +103,7 @@
                     <div class="input-group input-group-merge">
                         <input id="password_2"
                                type="password"
+                               name="password"
                                required=""
                                class="form-control form-control-prepended"
                                placeholder="Enter your password">
@@ -124,7 +126,7 @@
                 </div>
                 <div class="form-group text-center">
                     <button class="btn btn-primary mb-5"
-                            type="submit">Login</button><br>
+                            type="submit" name="login">Login</button><br>
                     <a href="">Forgot password?</a> <br>
                     Don't have an account? <a class="text-body text-underline"
                        href="signup.html">Sign up!</a>
