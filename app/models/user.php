@@ -101,5 +101,13 @@ Class User
 		die;
 	}
 
+	public function getAllMembers()
+    {
+		$DB = new Database();
+        // Retrieve members from the database using prepared statements
+        $query = "SELECT * FROM members";
+        return $DB->read($query);
+    }
+
 
 }

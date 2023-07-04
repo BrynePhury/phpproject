@@ -378,103 +378,36 @@
 
                                                         <th>Member</th>
 
-                                                        <th style="width: 37px;">Status</th>
-                                                        <th style="width: 120px;">Date Joined</th>
-                                                        <th style="width: 51px;">Contact</th>
+                                                        <th style="width: 37px;">Id</th>
+                                                        <th style="width: 150px;">Date Joined</th>
+                                                        <th style="width: 70px;">Contact</th>
                                                         <th style="width: 24px;"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="list"
                                                        id="staff02">
+                                                       
+                                                       <?php 
 
-                                                    <tr>
+                                                        $members = $data['members'];
+                                                       
+                                                       foreach ($members as $member) : ?>
+                                                        <tr>
+                                                            
+                                                            <td><?php echo $member->fname . ' ' . $member->lname; ?></td>
+                                                            <td><?php echo $member->id_number; ?></td>
+                                                            <td><?php echo $member->date_joined; ?></td>
+                                                            <td><?php echo $member->contact1; ?></td>
+                                                            
+                                                            <!-- Add more table cells here -->
+                                                        </tr>
+                                                    <?php endforeach; ?>
 
-                                                        <td>
-
-                                                            <span class="js-lists-values-employee-name">Michael Smith</span>
-
-                                                        </td>
-
-                                                        <td><span class="badge badge-warning">ADMIN</span></td>
-                                                        <td><small class="text-muted">3 days ago</small></td>
-                                                        <td>&dollar;12,402</td>
-                                                        <td><a href=""
-                                                               class="text-muted"><i class="material-icons">more_vert</i></a></td>
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td>
-
-                                                            <span class="js-lists-values-employee-name">Connie Smith</span>
-
-                                                        </td>
-
-                                                        <td><span class="badge badge-success">USER</span></td>
-                                                        <td><small class="text-muted">1 week ago</small></td>
-                                                        <td>&dollar;1,943</td>
-                                                        <td><a href=""
-                                                               class="text-muted"><i class="material-icons">more_vert</i></a></td>
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td>
-
-                                                            <span class="js-lists-values-employee-name">John Connor</span>
-
-                                                        </td>
-
-                                                        <td><span class="badge badge-primary">MANAGER</span></td>
-                                                        <td><small class="text-muted">1 week ago</small></td>
-                                                        <td>&dollar;1,943</td>
-                                                        <td><a href=""
-                                                               class="text-muted"><i class="material-icons">more_vert</i></a></td>
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td>
-
-                                                            <span class="js-lists-values-employee-name">Michael Smith</span>
-
-                                                        </td>
-
-                                                        <td><span class="badge badge-warning">ADMIN</span></td>
-                                                        <td><small class="text-muted">3 days ago</small></td>
-                                                        <td>&dollar;12,402</td>
-                                                        <td><a href=""
-                                                               class="text-muted"><i class="material-icons">more_vert</i></a></td>
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td>
-
-                                                            <span class="js-lists-values-employee-name">Connie Smith</span>
-
-                                                        </td>
-
-                                                        <td><span class="badge badge-success">USER</span></td>
-                                                        <td><small class="text-muted">1 week ago</small></td>
-                                                        <td>&dollar;1,943</td>
-                                                        <td><a href=""
-                                                               class="text-muted"><i class="material-icons">more_vert</i></a></td>
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td>
-
-                                                            <span class="js-lists-values-employee-name">John Connor</span>
-
-                                                        </td>
-
-                                                        <td><span class="badge badge-primary">MANAGER</span></td>
-                                                        <td><small class="text-muted">1 week ago</small></td>
-                                                        <td>&dollar;1,943</td>
-                                                        <td><a href=""
-                                                               class="text-muted"><i class="material-icons">more_vert</i></a></td>
-                                                    </tr>
 
                                                 </tbody>
                                             </table>
+
+                                            
                                         </div>
 
                                     </div>
