@@ -109,5 +109,14 @@ Class User
         return $DB->read($query);
     }
 
+	public function searchMembers($query)
+    {
+        $DB = new Database();
+        $searchQuery = "SELECT * FROM members WHERE fname LIKE :query OR lname LIKE :query";
+        $params = array(':query' => '%' . $query . '%');
+        
+        return $DB->read($searchQuery, $params);
+    }
+
 
 }

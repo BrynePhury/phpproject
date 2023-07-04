@@ -358,59 +358,42 @@
                         <div class="card card-form">
                                 <div class="row no-gutters">
                                     
-                                    <div class="col-lg-8 card-form__body">
-
-                                        <div class="table-responsive border-bottom"
-                                             data-toggle="lists"
-                                             data-lists-values='["js-lists-values-employee-name"]'>
-
-                                            <div class="search-form search-form--light m-3">
-                                                <input type="text"
-                                                       class="form-control search"
-                                                       placeholder="Search">
-                                                <button class="btn"
-                                                        type="button"><i class="material-icons">search</i></button>
-                                            </div>
-
-                                            <table class="table mb-0 thead-border-top-0">
-                                                <thead>
-                                                    <tr>
-
-                                                        <th>Member</th>
-
-                                                        <th style="width: 37px;">Id</th>
-                                                        <th style="width: 150px;">Date Joined</th>
-                                                        <th style="width: 70px;">Contact</th>
-                                                        <th style="width: 24px;"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="list"
-                                                       id="staff02">
-                                                       
-                                                       <?php 
-
-                                                        $members = $data['members'];
-                                                       
-                                                       foreach ($members as $member) : ?>
-                                                        <tr>
-                                                            
-                                                            <td><?php echo $member->fname . ' ' . $member->lname; ?></td>
-                                                            <td><?php echo $member->id_number; ?></td>
-                                                            <td><?php echo $member->date_joined; ?></td>
-                                                            <td><?php echo $member->contact1; ?></td>
-                                                            
-                                                            <!-- Add more table cells here -->
-                                                        </tr>
-                                                    <?php endforeach; ?>
-
-
-                                                </tbody>
-                                            </table>
-
-                                            
+                                <div class="col-lg-8 card-form__body">
+                                    <div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]'>
+                                        <div class="search-form search-form--light m-3">
+                                            <form action="./home" method="GET"> <!-- Add the form and set the action to the search route -->
+                                                <input type="text" class="form-control search" placeholder="Search" name="searchQuery"> <!-- Add the name attribute to the input field -->
+                                                <button class="btn" type="submit"><i class="material-icons">search</i></button> <!-- Change the button type to submit -->
+                                            </form>
                                         </div>
+                                        <table class="table mb-0 thead-border-top-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Member</th>
+                                                    <th style="width: 37px;">Id</th>
+                                                    <th style="width: 150px;">Date Joined</th>
+                                                    <th style="width: 70px;">Contact</th>
+                                                    <th style="width: 24px;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="list" id="staff02">
+                                                <?php 
+                                                $members = $data['members'];
 
+                                                foreach ($members as $member) : ?>
+                                                    <tr>
+                                                        <td><?php echo $member->fname . ' ' . $member->lname; ?></td>
+                                                        <td><?php echo $member->id_number; ?></td>
+                                                        <td><?php echo $member->date_joined; ?></td>
+                                                        <td><?php echo $member->contact1; ?></td>
+                                                        <!-- Add more table cells here -->
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                </div>
+
                                 </div>
                             </div>
 
