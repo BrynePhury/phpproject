@@ -435,7 +435,7 @@
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="staff.html">
+                                                   href="http://localhost/membership/public/fees">
                                                     <span class="sidebar-menu-text">Fees</span>
                                                 </a>
                                             </li>
