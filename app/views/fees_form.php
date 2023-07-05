@@ -8,11 +8,11 @@
               content="IE=edge">
         <meta name="viewport"
               content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Dashboard</title>
+        <title>Forms</title>
 
         <!-- Prevent the demo from appearing in search engines -->
         <meta name="robots"
-              content="nohome">
+              content="noindex">
 
         <!-- Perfect Scrollbar -->
         <link type="text/css"
@@ -70,9 +70,31 @@
               href="assets/css/vendor-flatpickr-airbnb.rtl.css"
               rel="stylesheet">
 
-        <!-- Vector Maps -->
+        <!-- Quill Theme -->
         <link type="text/css"
-              href="assets/vendor/jqvmap/jqvmap.min.css"
+              href="assets/css/vendor-quill.css"
+              rel="stylesheet">
+        <link type="text/css"
+              href="assets/css/vendor-quill.rtl.css"
+              rel="stylesheet">
+
+        <!-- Dropzone -->
+        <link type="text/css"
+              href="assets/css/vendor-dropzone.css"
+              rel="stylesheet">
+        <link type="text/css"
+              href="assets/css/vendor-dropzone.rtl.css"
+              rel="stylesheet">
+
+        <!-- Select2 -->
+        <link type="text/css"
+              href="assets/css/vendor-select2.css"
+              rel="stylesheet">
+        <link type="text/css"
+              href="assets/css/vendor-select2.rtl.css"
+              rel="stylesheet">
+        <link type="text/css"
+              href="assets/vendor/select2/select2.min.css"
               rel="stylesheet">
 
     </head>
@@ -105,7 +127,7 @@
                             </button>
 
                             <!-- Navbar Brand -->
-                            <a href="home.html"
+                            <a href="index.html"
                                class="navbar-brand ">
 
                                 <svg class="mr-2"
@@ -120,7 +142,7 @@
                             </a>
 
                             <form class="search-form d-none d-sm-flex flex"
-                                  action="home.html">
+                                  action="index.html">
                                 <button class="btn"
                                         type="submit"><i class="material-icons">search</i></button>
                                 <input type="text"
@@ -308,8 +330,8 @@
                                             <div class="text-muted">@adriandemian</div>
                                         </div>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item active"
-                                           href="home.html"><i class="material-icons">dvr</i> Dashboard</a>
+                                        <a class="dropdown-item"
+                                           href="index.html"><i class="material-icons">dvr</i> Dashboard</a>
                                         <a class="dropdown-item"
                                            href="profile.html"><i class="material-icons">account_circle</i> My profile</a>
                                         <a class="dropdown-item"
@@ -338,66 +360,52 @@
                     <div class="mdk-drawer-layout__content page">
 
                         <div class="container-fluid page__heading-container">
-                            <div class="page__heading d-flex align-items-end">
-                                <div class="flex">
-                                    <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb mb-0">
-                                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                            <li class="breadcrumb-item active"
-                                                aria-current="page">Members</li>
-                                        </ol>
-                                    </nav>
-                                    <h1 class="m-0">Members</h1>
-                                </div>
-                                
+                            <div class="page__heading">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0">
+                                        <li class="breadcrumb-item"><a href="#"><i class="material-icons icon-20pt">home</i></a></li>
+                                        <li class="breadcrumb-item">Classes</li>
+                                        <li class="breadcrumb-item active"
+                                            aria-current="page">Add Fee</li>
+                                    </ol>
+                                </nav>
+
+                                <h1 class="m-0">Add Fee</h1>
                             </div>
                         </div>
 
                         <div class="container-fluid page__container">
 
-                        <div class="card card-form">
+                            <div class="card card-form">
                                 <div class="row no-gutters">
-                                    
-                                <div class="col-lg-8 card-form__body">
-                                    <div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]'>
-                                        <div class="search-form search-form--light m-3">
-                                            <form action="./home" method="GET"> <!-- Add the form and set the action to the search route -->
-                                                <input type="text" class="form-control search" placeholder="Search" name="searchQuery"> <!-- Add the name attribute to the input field -->
-                                                <button class="btn" type="submit"><i class="material-icons">search</i></button> <!-- Change the button type to submit -->
-                                            </form>
-                                        </div>
-                                        <table class="table mb-0 thead-border-top-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Member</th>
-                                                    <th style="width: 37px;">Id</th>
-                                                    <th style="width: 150px;">Date Joined</th>
-                                                    <th style="width: 70px;">Contact</th>
-                                                    <th style="width: 24px;"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="list" id="staff02">
-                                                <?php 
-                                                $members = $data['members'];
-
-                                                foreach ($members as $member) : ?>
-                                                    <tr>
-                                                        <td><?php echo $member->fname . ' ' . $member->lname; ?></td>
-                                                        <td><?php echo $member->id_number; ?></td>
-                                                        <td><?php echo $member->date_joined; ?></td>
-                                                        <td><?php echo $member->contact1; ?></td>
-                                                        <!-- Add more table cells here -->
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
+                                    <div class="col-lg-8 card-form__body card-body">
+                                        <form action="http://localhost/membership/public/fees_form" method="post">
+                                            <div class="form-group">
+                                                <label for="class_name">Amount:</label>
+                                                <input type="text"
+                                                       name="amount"
+                                                       class="form-control"
+                                                       id="amount"
+                                                       placeholder="Enter fee amount ..">
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="experience_required">Description:</label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="description"
+                                                   id="description"
+                                                   placeholder="Enter fee description ..">
+                                            </div>
+                                            
+                                            <button type="submit"
+                                                    class="btn btn-primary"
+                                                    name="save_fee">Save</button>
+                                        </form>
                                     </div>
-                                </div>
-
                                 </div>
                             </div>
 
-                            
+ 
                         </div>
 
                     </div>
@@ -411,7 +419,7 @@
                                  data-perfect-scrollbar>
                                 <div class="sidebar-heading">Menu</div>
                                 <ul class="sidebar-menu">
-                                    <li class="sidebar-menu-item active open">
+                                    <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button"
                                            data-toggle="collapse"
                                            href="#dashboards_menu">
@@ -419,30 +427,30 @@
                                             <span class="sidebar-menu-text">Dashboards</span>
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
-                                        <ul class="sidebar-submenu collapse show "
+                                        <ul class="sidebar-submenu collapse"
                                             id="dashboards_menu">
-                                            <li class="sidebar-menu-item active">
+                                            <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="home.php">
-                                                    <span class="sidebar-menu-text">Home</span>
+                                                   href="index.html">
+                                                    <span class="sidebar-menu-text">Default</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="http://localhost/membership/public/classes">
-                                                    <span class="sidebar-menu-text">Classes</span>
+                                                   href="analytics.html">
+                                                    <span class="sidebar-menu-text">Analytics</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="http://localhost/membership/public/fees">
-                                                    <span class="sidebar-menu-text">Fees</span>
+                                                   href="staff.html">
+                                                    <span class="sidebar-menu-text">Staff</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="http://localhost/membership/public/invoices">
-                                                    <span class="sidebar-menu-text">invoices</span>
+                                                   href="ecommerce.html">
+                                                    <span class="sidebar-menu-text">E-commerce</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
@@ -670,32 +678,32 @@
                                            data-toggle="collapse"
                                            href="#layouts_menu">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">view_compact</i>
-                                            <span class="sidebar-menu-text">Storage</span>
+                                            <span class="sidebar-menu-text">Layouts</span>
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                         <ul class="sidebar-submenu collapse"
                                             id="layouts_menu">
                                             <li class="sidebar-menu-item active">
                                                 <a class="sidebar-menu-button"
-                                                   href="home.html">
+                                                   href="ui-forms.html">
                                                     <span class="sidebar-menu-text">Default</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="fluid-dashboard.html">
+                                                   href="fluid-ui-forms.html">
                                                     <span class="sidebar-menu-text">Full Width Navs</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="fixed-dashboard.html">
+                                                   href="fixed-ui-forms.html">
                                                     <span class="sidebar-menu-text">Fixed Navs</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="mini-dashboard.html">
+                                                   href="mini-ui-forms.html">
                                                     <span class="sidebar-menu-text">Mini Sidebar + Navs</span>
                                                 </a>
                                             </li>
@@ -750,7 +758,7 @@
                                                 <span class="sidebar-menu-text">Icons</span>
                                             </a>
                                         </li>
-                                        <li class="sidebar-menu-item">
+                                        <li class="sidebar-menu-item active">
                                             <a class="sidebar-menu-button"
                                                href="ui-forms.html">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">text_format</i>
@@ -856,8 +864,8 @@
                                                 <div>@adriandemian</div>
                                             </div>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item active"
-                                               href="home.html">Dashboard</a>
+                                            <a class="dropdown-item"
+                                               href="index.html">Dashboard</a>
                                             <a class="dropdown-item"
                                                href="profile.html">My profile</a>
                                             <a class="dropdown-item"
@@ -890,10 +898,10 @@
         <div id="app-settings">
             <app-settings layout-active="default"
                           :layout-location="{
-      'default': 'home.html',
-      'fixed': 'fixed-dashboard.html',
-      'fluid': 'fluid-dashboard.html',
-      'mini': 'mini-dashboard.html'
+      'default': 'ui-forms.html',
+      'fixed': 'fixed-ui-forms.html',
+      'fluid': 'fluid-ui-forms.html',
+      'mini': 'mini-ui-forms.html'
     }"></app-settings>
         </div>
 
@@ -927,28 +935,20 @@
         <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
         <script src="assets/js/flatpickr.js"></script>
 
-        <!-- Global Settings -->
-        <script src="assets/js/settings.js"></script>
+        <!-- jQuery Mask Plugin -->
+        <script src="assets/vendor/jquery.mask.min.js"></script>
 
-        <!-- Moment.js -->
-        <script src="assets/vendor/moment.min.js"></script>
-        <script src="assets/vendor/moment-range.js"></script>
+        <!-- Quill -->
+        <script src="assets/vendor/quill.min.js"></script>
+        <script src="assets/js/quill.js"></script>
 
-        <!-- Chart.js -->
-        <script src="assets/vendor/Chart.min.js"></script>
+        <!-- Dropzone -->
+        <script src="assets/vendor/dropzone.min.js"></script>
+        <script src="assets/js/dropzone.js"></script>
 
-        <!-- App Charts JS -->
-        <script src="assets/js/charts.js"></script>
-        <script src="assets/js/chartjs-rounded-bar.js"></script>
-
-        <!-- Chart Samples -->
-        <script src="assets/js/page.dashboard.js"></script>
-        <script src="assets/js/progress-charts.js"></script>
-
-        <!-- Vector Maps -->
-        <script src="assets/vendor/jqvmap/jquery.vmap.min.js"></script>
-        <script src="assets/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
-        <script src="assets/js/vector-maps.js"></script>
+        <!-- Select2 -->
+        <script src="assets/vendor/select2/select2.min.js"></script>
+        <script src="assets/js/select2.js"></script>
 
     </body>
 
