@@ -381,20 +381,20 @@
                                     <div class="col-lg-8 card-form__body card-body">
                                         <form action="http://localhost/membership/public/fees_form" method="post">
                                             <div class="form-group">
-                                                <label for="class_name">Amount:</label>
-                                                <input type="text"
-                                                       name="amount"
-                                                       class="form-control"
-                                                       id="amount"
-                                                       placeholder="Enter fee amount ..">
-                                            </div>
-                                            <div class="form-group">
                                             <label for="experience_required">Description:</label>
                                             <input type="text"
                                                    class="form-control"
                                                    name="description"
                                                    id="description"
                                                    placeholder="Enter fee description ..">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="class_name">Amount:</label>
+                                                <input type="text"
+                                                       name="amount"
+                                                       class="form-control"
+                                                       id="amount"
+                                                       placeholder="Enter fee amount ..">
                                             </div>
                                             
                                             <button type="submit"

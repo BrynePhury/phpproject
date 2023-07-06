@@ -12,6 +12,19 @@ Class Invoices extends Controller
         //     $this->handleLoginForm();
         // }
 
+		$invoices = $this->loadInvoices();
+
+		$data['invoices'] = $invoices;
+
 		$this->view("invoices",$data);
 	}
+
+	public function loadInvoices()
+    {
+        $DB = new Database();
+
+        $query = "SELECT * FROM invoices";
+
+        return $DB->read($query);
+    }
 }
