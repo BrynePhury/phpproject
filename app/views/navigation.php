@@ -1,148 +1,5 @@
-<?php require_once'header.php';?>
 
-            <!-- Header Layout Content -->
-            <div class="mdk-header-layout__content">
-
-                <div class="mdk-drawer-layout js-mdk-drawer-layout"
-                     data-push
-                     data-responsive-width="992px">
-                    <div class="mdk-drawer-layout__content page">
-
-                        <div class="container-fluid page__heading-container">
-                            <div class="page__heading d-flex align-items-center">
-                                <div class="flex">
-                                    <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb mb-0">
-                                            <li class="breadcrumb-item"><a href="http://localhost/membership/public/home">Home</a></li>
-                                            <li class="breadcrumb-item active"
-                                                aria-current="page">Invoices</li>
-                                        </ol>
-                                    </nav>
-                                    <h1 class="m-0">Invoices</h1>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="membersDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Create Invoice
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="membersDropdown">
-                                        <form>
-                                            <?php
-                                            $members = $data['members'];
-                                            if (is_array($members) && !empty($members)) {
-                                                foreach ($members as $member) {
-                                                    echo '<div class="dropdown-item">';
-                                                    echo '<input class="form-check-input" type="checkbox" id="member_' . $member->id_number . '" value="' . $member->id_number . '">';
-                                                    echo '<label class="form-check-label" for="member_' . $member->id_number . '">' . $member->fname . " ". $member->lname.'</label>';
-                                                    echo '</div>';
-                                                }
-                                            } else {
-                                                echo '<div class="dropdown-item">No members available</div>';
-                                            }
-                                            ?>
-                                            <div class="dropdown-divider"></div>
-                                            <button type="button" class="btn btn-primary" id="addMembersButton">Generate</button>
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <script>
-                                    // Handle click event on "Add Selected Members" button
-                                    var addMembersButton = document.getElementById('addMembersButton');
-                                    addMembersButton.addEventListener('click', function (event) {
-                                        event.preventDefault();
-                                        var selectedMembers = [];
-                                        var checkboxes = document.querySelectorAll('.dropdown-item input[type="checkbox"]');
-                                        checkboxes.forEach(function (checkbox) {
-                                            if (checkbox.checked) {
-                                                selectedMembers.push(checkbox.value);
-                                            }
-                                        });
-                                        // Redirect to the add_fees page with selected member IDs and class ID
-                                        var classId = <?php echo $classId; ?>;
-                                        var members = selectedMembers.join(',');
-                                        var url = 'http://localhost/membership/public/invoices?class_id=' + classId + '&members=' + members;
-                                        window.location.href = url;
-                                    });
-                                </script>
-
-                            </div>
-                        </div>
-
-                        <div class="container-fluid page__container">
-
-                            <div class="card card-form">
-                                    <div class="row no-gutters">
-                                        
-                                        <div class="col-lg-8 card-form__body">
-
-                                            <div class="table-responsive border-bottom"
-                                                data-toggle="lists"
-                                                data-lists-values='["js-lists-values-employee-name"]'>
-
-                                                <div class="search-form search-form--light m-3">
-                                                    <input type="text"
-                                                        class="form-control search"
-                                                        placeholder="Search">
-                                                    <button class="btn"
-                                                            type="button"><i class="material-icons">search</i></button>
-                                                </div>
-
-                                                <table class="table mb-0 thead-border-top-0">
-                                                    <thead>
-                                                        <tr>
-
-                                                            <th>Description</th>
-
-                                                            
-                                                            <th style="width: 257px;">Amount</th>
-                                                            
-                                                            <th style="width: 24px;"></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="list"
-                                                        id="staff02">
-                                                        
-                                                        <?php 
-                                                        $invoices = $data['invoices'];
-
-                                                        if (is_array($invoices)) {
-                                                            foreach ($invoices as $invoice) :
-                                                                ?>
-                                                                <tr>
-                                                                    <td><?php echo $invoice->invoice_description; ?></td>
-                                                                    <td><?php echo $invoice->amount; ?></td>
-                                                                    <!-- Add more table cells here -->
-                                                                </tr>
-                                                                <?php
-                                                            endforeach;
-                                                        } else {
-                                                            // Handle the case when there are no invoices available or an error occurred
-                                                            echo "<tr><td colspan='2'>No invoices available.</td></tr>";
-                                                        }
-                                                        ?>
-
-
-
-                                                    </tbody>
-                                                </table>
-
-                                                
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                
-                            </div>
-
-                            
-                        </div>
-
-                    </div>
-                    <!-- // END drawer-layout__content -->
-
-                    <div class="mdk-drawer  js-mdk-drawer"
+<div class="mdk-drawer  js-mdk-drawer"
                          id="default-drawer"
                          data-align="start">
                         <div class="mdk-drawer__content">
@@ -160,34 +17,34 @@
                                         </a>
                                         <ul class="sidebar-submenu collapse show "
                                             id="dashboards_menu">
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button"
-                                                   href="home.php">
-                                                    <span class="sidebar-menu-text">Default</span>
-                                                </a>
-                                            </li>
                                             <li class="sidebar-menu-item active">
                                                 <a class="sidebar-menu-button"
-                                                   href="classes.php">
+                                                   href="home.php">
+                                                    <span class="sidebar-menu-text">Home</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item">
+                                                <a class="sidebar-menu-button"
+                                                   href="classes">
                                                     <span class="sidebar-menu-text">Classes</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="staff.html">
-                                                    <span class="sidebar-menu-text">Staff</span>
+                                                   href="fees">
+                                                    <span class="sidebar-menu-text">Fees</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="ecommerce.html">
-                                                    <span class="sidebar-menu-text">E-commerce</span>
+                                                   href="invoices">
+                                                    <span class="sidebar-menu-text">invoices</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="dashboard-quick-access.html">
-                                                    <span class="sidebar-menu-text">Quick Access</span>
+                                                   href="sessions">
+                                                    <span class="sidebar-menu-text">Sessions</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -409,32 +266,32 @@
                                            data-toggle="collapse"
                                            href="#layouts_menu">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">view_compact</i>
-                                            <span class="sidebar-menu-text">Layouts</span>
+                                            <span class="sidebar-menu-text">Storage</span>
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                         <ul class="sidebar-submenu collapse"
                                             id="layouts_menu">
                                             <li class="sidebar-menu-item active">
                                                 <a class="sidebar-menu-button"
-                                                   href="classes.php">
+                                                   href="home.html">
                                                     <span class="sidebar-menu-text">Default</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="fluid-classes.php">
+                                                   href="fluid-dashboard.html">
                                                     <span class="sidebar-menu-text">Full Width Navs</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="fixed-classes.php">
+                                                   href="fixed-dashboard.html">
                                                     <span class="sidebar-menu-text">Fixed Navs</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="mini-classes.php">
+                                                   href="mini-dashboard.html">
                                                     <span class="sidebar-menu-text">Mini Sidebar + Navs</span>
                                                 </a>
                                             </li>
@@ -575,7 +432,7 @@
                                     <a href="profile.html"
                                        class="flex d-flex align-items-center text-underline-0 text-body">
                                         <span class="avatar avatar-sm mr-2">
-                                            <img src="<?=ASSETS?>/images/avatar/demi.png"
+                                            <img src="assets/images/avatar/demi.png"
                                                  alt="avatar"
                                                  class="avatar-img rounded-circle">
                                         </span>
@@ -595,8 +452,8 @@
                                                 <div>@adriandemian</div>
                                             </div>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item"
-                                               href="home.php">Dashboard</a>
+                                            <a class="dropdown-item active"
+                                               href="home.html">Dashboard</a>
                                             <a class="dropdown-item"
                                                href="profile.html">My profile</a>
                                             <a class="dropdown-item"
@@ -617,118 +474,3 @@
                         </div>
                     </div>
                 </div>
-                <!-- // END drawer-layout -->
-
-            </div>
-            <!-- // END header-layout__content -->
-
-        </div>
-        <!-- // END header-layout -->
-
-        <!-- App Settings FAB -->
-        <div id="app-settings">
-            <app-settings layout-active="default"
-                          :layout-location="{
-      'default': 'classes.php',
-      'fixed': 'fixed-classes.php',
-      'fluid': 'fluid-classes.php',
-      'mini': 'mini-classes.php'
-    }"></app-settings>
-        </div>
-
-        
-        <div id="dialogContainer" class="dialog-container">
-            <div id="dialogOverlay" class="dialog-overlay"></div>
-
-            <div id="dialog" class="dialog">
-            <h2 class="dialog-title">AlertDialog Title</h2>
-            <form>
-                <div class="text-field">
-                <label for="field1">Field 1:</label>
-                <input type="text" id="field1" name="field1">
-                </div>
-                <div class="text-field">
-                <label for="field2">Field 2:</label>
-                <input type="text" id="field2" name="field2">
-                </div>
-                <div class="text-field">
-                <label for="field3">Field 3:</label>
-                <input type="text" id="field3" name="field3">
-                </div>
-                <div class="dialog-buttons">
-                <button type="submit">Submit</button>
-                </div>
-            </form>
-            </div>
-        </div>
-
-        <script>
-            // JavaScript code to show and hide the dialog
-            document.addEventListener('DOMContentLoaded', function() {
-            var dialogContainer = document.getElementById('dialogContainer');
-            var showDialogButton = document.getElementById('showDialogButton');
-            var dialogOverlay = document.getElementById('dialogOverlay');
-
-            showDialogButton.addEventListener('click', function() {
-                dialogContainer.style.display = 'block';
-                dialogOverlay.style.display = 'block';
-            });
-
-            dialogOverlay.addEventListener('click', function() {
-                dialogContainer.style.display = 'none';
-                dialogOverlay.style.display = 'none';
-                });
-            });
-        </script>
-
-        <!-- jQuery -->
-        <script src="<?=ASSETS?>/vendor/jquery.min.js"></script>
-
-        <!-- Bootstrap -->
-        <script src="<?=ASSETS?>/vendor/popper.min.js"></script>
-        <script src="<?=ASSETS?>/vendor/bootstrap.min.js"></script>
-
-        <!-- Perfect Scrollbar -->
-        <script src="<?=ASSETS?>/vendor/perfect-scrollbar.min.js"></script>
-
-        <!-- DOM Factory -->
-        <script src="<?=ASSETS?>/vendor/dom-factory.js"></script>
-
-        <!-- MDK -->
-        <script src="<?=ASSETS?>/vendor/material-design-kit.js"></script>
-
-        <!-- App -->
-        <script src="<?=ASSETS?>/js/toggle-check-all.js"></script>
-        <script src="<?=ASSETS?>/js/check-selected-row.js"></script>
-        <script src="<?=ASSETS?>/js/dropdown.js"></script>
-        <script src="<?=ASSETS?>/js/sidebar-mini.js"></script>
-        <script src="<?=ASSETS?>/js/app.js"></script>
-
-        <!-- App Settings (safe to remove) -->
-        <script src="<?=ASSETS?>/js/app-settings.js"></script>
-
-        <!-- Flatpickr -->
-        <script src="<?=ASSETS?>/vendor/flatpickr/flatpickr.min.js"></script>
-        <script src="<?=ASSETS?>/js/flatpickr.js"></script>
-
-        <!-- Global Settings -->
-        <script src="<?=ASSETS?>/js/settings.js"></script>
-
-        <!-- Chart.js -->
-        <script src="<?=ASSETS?>/vendor/Chart.min.js"></script>
-
-        <!-- App Charts JS -->
-        <script src="<?=ASSETS?>/js/charts.js"></script>
-        <script src="<?=ASSETS?>/js/progress-charts.js"></script>
-
-        <!-- Chart Samples -->
-        <script src="<?=ASSETS?>/js/page.analytics.js"></script>
-
-        <!-- Vector Maps -->
-        <script src="<?=ASSETS?>/vendor/jqvmap/jquery.vmap.min.js"></script>
-        <script src="<?=ASSETS?>/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
-        <script src="<?=ASSETS?>/js/vector-maps.js"></script>
-
-    </body>
-
-</html>

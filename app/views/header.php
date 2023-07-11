@@ -10,6 +10,12 @@
               content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title><?=$data['page_title'] . " | " . WEBSITE_TITLE?></title>
 
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+        <!-- Bootstrap JS Bundle (Popper.js included) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
         <!-- Prevent the demo from appearing in search engines -->
         <meta name="robots"
               content="noindex">
