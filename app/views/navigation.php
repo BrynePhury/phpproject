@@ -47,6 +47,12 @@
                                                     <span class="sidebar-menu-text">Sessions</span>
                                                 </a>
                                             </li>
+                                            <li class="sidebar-menu-item">
+                                                <a class="sidebar-menu-button"
+                                                   href="sessions">
+                                                    <span class="sidebar-menu-text">Reciepts</span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
 

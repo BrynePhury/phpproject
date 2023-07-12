@@ -34,7 +34,8 @@
                                         <div class="card-body">
                                             <div class="badge badge-danger">OVERDUE</div>
 
-                                            <?php $member = $data['member'];
+                                            <?php 
+                                            $member = $data['member'];
                                             $session = $data['session'];
                                             $fees = $data['fees']; 
                                             $invoiceDetails= $data['invoiceDetails'];
@@ -115,7 +116,8 @@
 
                     </div>
                     <!-- // END drawer-layout__content -->
-                    <?php require_once'sidebar.php';?>
+                    
+                    <?php require_once'navigation.php';?>
 
             </div>
             <!-- // END header-layout__content -->
