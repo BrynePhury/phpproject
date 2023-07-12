@@ -8,23 +8,47 @@ class Invoices extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['members'])) {
             // Get the class ID and members from the URL parameters
-			
             $membersString = $_GET['members'];
-            if (is_array($membersString)) {
-                $members = $membersString; // Use the array directly
-            } else {
-                $members = explode(',', $membersString); // Convert the string to an array
-            }
+            $members = explode(',', $membersString);
 
-            // // Process and generate the invoices
+            // Process and generate the invoices
             $this->generateInvoices($members);
 
-            // // Redirect back to the invoices page or any other appropriate page
-            // header('Location: http://localhost/membership/public/invoices');
-            // exit;
-        } 
+            // Redirect back to the invoices page or any other appropriate page
+            header('Location: http://localhost/membership/public/invoices');
+            exit;
+        }
 
         $invoices = $this->loadInvoices();
+
+        $membersArr = array();
+        $sessionsArr = array();
+
+        if (is_array($invoices)) {
+            $DB = new Database();
+
+            foreach ($invoices as $invoice) {
+                $id_number = $invoice->member_id;
+
+                $query = "SELECT * FROM members WHERE id_number = :id_number LIMIT 1";
+                $params = array(':id_number' => $id_number);
+                $member = $DB->read($query, $params);
+
+                if ($member) {
+                    $membersArr[] = $member[0];
+                }
+
+                $session_code = $invoice->session_code;
+
+                $query = "SELECT * FROM m_sessions WHERE session_code = :session_code LIMIT 1";
+                $params = array(':session_code' => $session_code);
+                $session = $DB->read($query, $params);
+
+                if ($session) {
+                    $sessionsArr[] = $session[0];
+                }
+            }
+        }
 
         $user = $this->loadModel("user");
 
@@ -32,9 +56,12 @@ class Invoices extends Controller
         $data['members'] = $user->getAllMembers();
 
         $data['invoices'] = $invoices;
+        $data['invoice_members'] = $membersArr;
+        $data['invoice_sessions'] = $sessionsArr;
 
         $this->view("invoices", $data);
     }
+
 
     public function generateInvoices($members)
 	{
@@ -57,8 +84,13 @@ class Invoices extends Controller
 
 						$invoiceNo = $this->generateInvoiceNumber();
 
+                        $m_status = "Open";
+
+                        $open_session = $this->getOpenSessionId($m_status);
+
+
 						// Insert into invoices table
-						$this->insertInvoice($invoiceNo, $memberId);
+						$this->insertInvoice($invoiceNo, $memberId,$open_session);
 
 						if ($groupedFees) {
 							foreach ($groupedFees as $groupedFee) {
@@ -96,6 +128,17 @@ class Invoices extends Controller
         return $DB->read($query, $params);
     }
 
+    private function getOpenSessionId($m_status)
+    {
+
+        $DB = new Database();
+        $query = "SELECT * FROM m_sessions WHERE m_status = :m_status";
+        $params = array(':m_status' => $m_status);
+        $sess = $DB->read($query, $params);
+
+        return $sess[0]->session_code;
+    }
+
     private function getFeeDetails($feeId)
     {
         $DB = new Database();
@@ -104,11 +147,11 @@ class Invoices extends Controller
         return $DB->read($query, $params);
     }
 
-    private function insertInvoice($invoiceNo,$memberId)
+    private function insertInvoice($invoiceNo,$memberId,$session_code)
 	{
 		$DB = new Database();
-		$query = "INSERT INTO invoices (invoice_no,member_id) VALUES (:invoice_no, :member_id)";
-		$params = array(':invoice_no' => $invoiceNo,':member_id' => $memberId ); // Modify session_code as per your requirement
+		$query = "INSERT INTO invoices (invoice_no,member_id,session_code) VALUES (:invoice_no, :member_id, :session_code)";
+		$params = array(':invoice_no' => $invoiceNo,':member_id' => $memberId, ':session_code' => $session_code );
 		$DB->write($query, $params);
 	}
 

@@ -93,10 +93,10 @@
                                                     <thead>
                                                         <tr>
 
-                                                            <th>Description</th>
+                                                            <th>Member</th>
 
                                                             
-                                                            <th style="width: 257px;">Amount</th>
+                                                            <th style="width: 257px;">Session</th>
                                                             
                                                             <th style="width: 24px;"></th>
                                                         </tr>
@@ -105,23 +105,34 @@
                                                         id="staff02">
                                                         
                                                         <?php 
-                                                        $invoices = $data['invoices'];
+                                                            $members = $data['invoice_members'];
+                                                            $sessions = $data['invoice_sessions'];
+                                                            $invoices = $data['invoices'];
 
-                                                        if (is_array($invoices)) {
-                                                            foreach ($invoices as $invoice) :
-                                                                ?>
-                                                                <tr>
-                                                                    <td><?php echo $invoice->invoice_description; ?></td>
-                                                                    <td><?php echo $invoice->amount; ?></td>
-                                                                    <!-- Add more table cells here -->
-                                                                </tr>
-                                                                <?php
-                                                            endforeach;
-                                                        } else {
-                                                            // Handle the case when there are no invoices available or an error occurred
-                                                            echo "<tr><td colspan='2'>No invoices available.</td></tr>";
-                                                        }
-                                                        ?>
+                                                            if (is_array($members) && is_array($sessions)) {
+                                                                $count = count($members);
+                                                                for ($i = 0; $i < $count; $i++) {
+                                                                    $member = $members[$i];
+                                                                    $session = $sessions[$i];
+                                                                    $invoice = $invoices[$i];
+                                                                    ?>
+                                                                    <tr>
+                                                                        <td><?php echo $member->fname . " " . $member->lname; ?></td>
+                                                                        <td><?php echo $session->session_name; ?></td>
+                                                                        <td>
+                                                                            <a href="http://localhost/membership/public/view_invoice?invoice=<?php echo $invoice->invoice_no; ?>" class="btn btn-success ml-3">View</a>
+                                                                        </td>
+                                                                        <!-- Add more table cells here -->
+                                                                    </tr>
+                                                                    <?php
+                                                                }
+                                                            } else {
+                                                                // Handle the case when there are no invoices available or an error occurred
+                                                                echo "<tr><td colspan='3'>No invoices available.</td></tr>";
+                                                            }
+                                                            ?>
+
+
 
 
 

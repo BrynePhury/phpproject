@@ -58,7 +58,7 @@
                                                 foreach ($sessions as $session) : ?>
                                                     <tr>
                                                         <td><?php echo $session->session_name; ?></td>
-                                                        <td><?php echo $session->	status; ?></td>
+                                                        <td><?php echo $session->m_status; ?></td>
                                                         
                                                         
                                                         <!-- Add more table cells here -->

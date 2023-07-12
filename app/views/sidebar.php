@@ -13,7 +13,7 @@
                                            data-toggle="collapse"
                                            href="#dashboards_menu">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-                                            <span class="sidebar-menu-text">Dashboards</span>
+                                            <span class="sidebar-menu-text">Dashboard</span>
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                         <ul class="sidebar-submenu collapse show "
@@ -21,7 +21,7 @@
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
                                                    href="home.php">
-                                                    <span class="sidebar-menu-text">Default</span>
+                                                    <span class="sidebar-menu-text">Home</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item active">
