@@ -20,19 +20,20 @@
                                     </nav>
                                     <h1 class="m-0">Invoices</h1>
                                 </div>
+                                
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="membersDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Create Invoice
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="membersDropdown">
-                                        <form>
+                                        <form action="http://localhost/membership/public/invoices" method="get">
                                             <?php
                                             $members = $data['members'];
                                             if (is_array($members) && !empty($members)) {
                                                 foreach ($members as $member) {
                                                     echo '<div class="dropdown-item">';
-                                                    echo '<input class="form-check-input" type="checkbox" id="member_' . $member->id_number . '" value="' . $member->id_number . '">';
-                                                    echo '<label class="form-check-label" for="member_' . $member->id_number . '">' . $member->fname . " ". $member->lname.'</label>';
+                                                    echo '<input class="form-check-input" type="checkbox" id="member_' . $member->id_number . '" name="members[]" value="' . $member->id_number . '">';
+                                                    echo '<label class="form-check-label" for="member_' . $member->id_number . '">' . $member->fname . " " . $member->lname . '</label>';
                                                     echo '</div>';
                                                 }
                                             } else {
@@ -40,10 +41,11 @@
                                             }
                                             ?>
                                             <div class="dropdown-divider"></div>
-                                            <button type="button" class="btn btn-primary" id="addMembersButton">Generate</button>
+                                            <button type="submit" class="btn btn-primary">Generate</button>
                                         </form>
                                     </div>
                                 </div>
+
 
                                 <script>
                                     // Handle click event on "Add Selected Members" button
@@ -58,9 +60,9 @@
                                             }
                                         });
                                         // Redirect to the add_fees page with selected member IDs and class ID
-                                        var classId = <?php echo $classId; ?>;
+                                        
                                         var members = selectedMembers.join(',');
-                                        var url = 'http://localhost/membership/public/invoices?class_id=' + classId + '&members=' + members;
+                                        var url = 'http://localhost/membership/public/invoices?members=' + members;
                                         window.location.href = url;
                                     });
                                 </script>
@@ -637,49 +639,7 @@
         </div>
 
         
-        <div id="dialogContainer" class="dialog-container">
-            <div id="dialogOverlay" class="dialog-overlay"></div>
-
-            <div id="dialog" class="dialog">
-            <h2 class="dialog-title">AlertDialog Title</h2>
-            <form>
-                <div class="text-field">
-                <label for="field1">Field 1:</label>
-                <input type="text" id="field1" name="field1">
-                </div>
-                <div class="text-field">
-                <label for="field2">Field 2:</label>
-                <input type="text" id="field2" name="field2">
-                </div>
-                <div class="text-field">
-                <label for="field3">Field 3:</label>
-                <input type="text" id="field3" name="field3">
-                </div>
-                <div class="dialog-buttons">
-                <button type="submit">Submit</button>
-                </div>
-            </form>
-            </div>
-        </div>
-
-        <script>
-            // JavaScript code to show and hide the dialog
-            document.addEventListener('DOMContentLoaded', function() {
-            var dialogContainer = document.getElementById('dialogContainer');
-            var showDialogButton = document.getElementById('showDialogButton');
-            var dialogOverlay = document.getElementById('dialogOverlay');
-
-            showDialogButton.addEventListener('click', function() {
-                dialogContainer.style.display = 'block';
-                dialogOverlay.style.display = 'block';
-            });
-
-            dialogOverlay.addEventListener('click', function() {
-                dialogContainer.style.display = 'none';
-                dialogOverlay.style.display = 'none';
-                });
-            });
-        </script>
+        
 
         <!-- jQuery -->
         <script src="<?=ASSETS?>/vendor/jquery.min.js"></script>

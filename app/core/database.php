@@ -2,19 +2,18 @@
 
 Class Database
 {
-	public function db_connect()
-	{
+	private $db; 
 
-		try{
-
-			$string = DB_TYPE .":host=".DB_HOST.";dbname=".DB_NAME.";";
-			return $db = new PDO($string,DB_USER,DB_PASS);
-			
-		}catch(PDOExecption $e){
-
-			die($e->getMessage());
-		}
-	}
+    public function db_connect()
+    {
+        try {
+            $string = DB_TYPE . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";";
+            $this->db = new PDO($string, DB_USER, DB_PASS); 
+            return $this->db;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 
 	public function read($query,$data = [])
 	{
@@ -75,6 +74,12 @@ Class Database
 			return false;
 		}
 	}
+
+	public function lastInsertId()
+	{
+		return $this->db->lastInsertId();
+	}
+
 
 
 }

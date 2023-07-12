@@ -30,14 +30,14 @@
                             <div class="card card-form">
                                 <div class="row no-gutters">
                                     <div class="col-lg-8 card-form__body card-body">
-                                        <form action="http://localhost/membership/public/classes_form" method="post">
+                                        <form action="session_form" method="post">
                                             <div class="form-group">
                                                 <label for="session_name">Session Name:</label>
                                                 <input type="text"
                                                        name="session_name"
                                                        class="form-control"
                                                        id="session_name"
-                                                       placeholder="Enter class name ..">
+                                                       placeholder="Enter Session name ..">
                                             </div>
                                             <div class="form-group">
                                             <label for="status">Status:</label>
@@ -45,12 +45,12 @@
                                                    class="form-control"
                                                    name="status"
                                                    id="status"
-                                                   placeholder="Specify experience length ..">
+                                                   placeholder="Specify status ..">
                                             </div>
                                             
                                             <button type="submit"
                                                     class="btn btn-primary"
-                                                    name="save_class">Save</button>
+                                                    name="save_session">Save</button>
                                         </form>
                                     </div>
                                 </div>
