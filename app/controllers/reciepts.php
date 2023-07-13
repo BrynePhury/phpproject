@@ -5,7 +5,10 @@ class Reciepts extends Controller
     {
         $data['page_title'] = "Reciepts";
 
-		
+		$user = $this->loadModel("user");
+
+        // Get all members from the model
+        $data['members'] = $user->getAllMembers();
 
         $this->view("reciepts", $data);
     }

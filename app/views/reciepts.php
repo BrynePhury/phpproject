@@ -3,6 +3,8 @@
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">
 
+            
+
                 <div class="mdk-drawer-layout js-mdk-drawer-layout"
                      data-push
                      data-responsive-width="992px">
@@ -15,11 +17,34 @@
                                         <ol class="breadcrumb mb-0">
                                             <li class="breadcrumb-item"><a href="http://localhost/membership/public/home">Home</a></li>
                                             <li class="breadcrumb-item active"
-                                                aria-current="page">Invoices</li>
+                                                aria-current="page">Reciepts</li>
                                         </ol>
                                     </nav>
-                                    <h1 class="m-0">Invoices</h1>
+                                    <h1 class="m-0">Reciepts</h1>
                                 </div>
+                                
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="membersDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Generate Receipt
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="membersDropdown">
+                                        <?php
+                                        $members = $data['members'];
+                                        if (is_array($members) && !empty($members)) {
+                                            foreach ($members as $member) {
+                                                $memberId = $member->id_number;
+                                                echo '<a class="dropdown-item" href="http://localhost/membership/public/reciept_form?member_id=' . $memberId . '">';
+                                                echo $member->fname . " " . $member->lname;
+                                                echo '</a>';
+                                            }
+                                        } else {
+                                            echo '<div class="dropdown-item">No members available</div>';
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+
+
 
                             </div>
                         </div>
@@ -85,6 +110,9 @@
                                                                 echo "<tr><td colspan='3'>No invoices available.</td></tr>";
                                                             }
                                                             ?>
+
+
+
 
 
                                                     </tbody>
