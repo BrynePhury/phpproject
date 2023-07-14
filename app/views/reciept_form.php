@@ -8,7 +8,8 @@
                      data-responsive-width="992px">
                     <div class="mdk-drawer-layout__content page">
 
-                    <?php $member = $data['member'];?>
+                    <?php $member = $data['member'];
+                    $memberId = $member->id_number;?>
 
                         <div class="container-fluid page__heading-container">
                             <div class="page__heading">
@@ -31,63 +32,94 @@
 
                             <div class="card card-form">
                                 <div class="row no-gutters">
-                                <?php $fees = $data['fees'];?>
-                                    
-                                <div class="col-lg-8 card-form__body card-body">
-                                    <form id="invoiceForm">
-                                    <label for="select05">Applicable Fees</label>
-                                        <select id="select05" data-toggle="select" class="form-control form-control-sm">
-                                            <?php
-                                            
-                                            if (is_array($fees) && !empty($fees)) {
-                                                $count = count($fees);
-                                                for ($i = 0; $i < $count; $i++) {
-                                                    $fee = $fees[$i];
-                                                    echo '<option value="' . $fee->fee_id . '">' . $fee->fee_description . "     K" . $fee->amount . '</option>';
-                                                }
-                                            } else {
-                                                echo '<option>No fees available</option>';
-                                            }
-                                            ?>
-                                        </select>
+
+                                <div class="col-lg-8 card-form__body">
+
+                                        <div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-employee-name"]'>
+
+                                        <form action="http://localhost/membership/public/receipt_form_two" method="post">
+
+                                            <table class="table mb-0 thead-border-top-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 18px;">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <!-- <input type="checkbox" class="custom-control-input js-toggle-check-all" data-target="#staff" id="customCheckAll"> -->
+                                                                <!-- <label class="custom-control-label" for="customCheckAll"><span class="text-hide">Toggle all</span></label> -->
+                                                            </div>
+                                                        </th>
+                                                        <th>Description</th>
+                                                        <th style="width: 37px;">Cost</th>
+                                                        <th style="width: 24px;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="list" id="staff">
+                                                    <?php 
+                                                    $fees = $data['fees'];
+                                                    foreach ($fees as $fee): ?>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" name="selector[]"class="custom-control-input js-check-selected-row" value="<?php echo $fee->fee_id. ",". $memberId; ?>" id="customCheck_<?php echo $fee->fee_id; ?>">
+                                                                <label class="custom-control-label" for="customCheck_<?php echo $fee->fee_id; ?>"><span class="text-hide">Check</span></label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="media align-items-center">
+                                                                <div class="media-body">
+                                                                    <span class="js-lists-values-employee-name"><?php echo $fee->fee_description; ?></span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo "K".$fee->amount; ?>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+
+                                            <!-- Add the member ID as a hidden input field -->
+                                            <input type="hidden" name="member_id" value="<?php echo $memberId; ?>">
+
+                                            <button type="submit" class="btn btn-primary" name="save_class">Next</button>
+                                            </form>
+
+                                            <script>
+                                            // Handle form submission
+                                            var form = document.getElementById('invoiceForm');
+                                            form.addEventListener('submit', function(event) {
+                                                event.preventDefault();
+
+                                                var select = document.getElementById('select05');
+                                                var selectedFeeId = select.options[select.selectedIndex].value;
+                                                var amountInput = document.getElementById('amount_paid').value;
+
+                                                // Build the query parameters for the GET request
+                                                var queryParams = 'fee_id=' + selectedFeeId + '&amount_paid=' + amountInput + '&member_id=' + <?php echo $memberId; ?>;
+
+                                                // Update the form's action URL with the query parameters
+                                                form.action = "http://localhost/membership/public/reciept_form?" + queryParams;
+
+                                                // Submit the form
+                                                form.submit();
+                                            });
+                                            </script>
 
 
-                                        <div class="form-group">
-                                            <label for="amount_paid">Amount Paid:</label>
-                                            <input type="text" class="form-control" name="amount_paid" id="amount_paid" placeholder="Enter amount paid (K)..">
-                                            <div class="invalid-feedback">
-                                                Amount must be less than or equal to the selected fee amount.
-                                            </div>
                                         </div>
+                                    </div>
 
-                                        <button type="submit" class="btn btn-primary" name="save_class">Save</button>
-                                    </form>
+                                <div class="col-lg-8 card-form__body card-body">
+                                        
                                 </div>
 
-                                <script>
-                                    // Handle form submission
-                                    var form = document.getElementById('invoiceForm');
-                                    form.addEventListener('submit', function (event) {
-                                        event.preventDefault();
-                                        var select = document.getElementById('select05');
-                                        var amountInput = document.getElementById('amount_paid');
-                                        var selectedFee = select.options[select.selectedIndex].value;
-                                        var feeAmount = parseFloat(selectedFee.split(' ')[1]);
-                                        var enteredAmount = parseFloat(amountInput.value);
-
-                                        if (enteredAmount <= feeAmount) {
-                                            // Submit the form
-                                            form.submit();
-                                        } else {
-                                            amountInput.classList.add('is-invalid');
-                                        }
-                                    });
-                                </script>
-
-
+                                
                                         
                                 </div>
                             </div>
+
+                                        
 
  
                         </div>
