@@ -18,10 +18,18 @@ class Receipt_form_two extends Controller
         $memberId= $actualArray[1];
 
         }
-        
+
+        // Get the member from the database
+        $member = $this->getMember($memberId);
+
+        if (!$member) {
+            // Member not found, handle the error
+            echo "Member not found";
+            return;
+        }
 
 
-		
+		$data['member'] = $member;
 
         $this->view("Receipt_form_two", $data);
     }

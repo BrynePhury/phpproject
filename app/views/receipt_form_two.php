@@ -8,8 +8,8 @@
                      data-responsive-width="992px">
                     <div class="mdk-drawer-layout__content page">
 
-                    <?php // $member = $data['member'];
-                    //$memberId = $member->id_number;?>
+                    <?php $member = $data['member'];
+                    $memberId = $member->id_number;?>
 
                         <div class="container-fluid page__heading-container">
                             <div class="page__heading">
@@ -22,7 +22,7 @@
                                     </ol>
                                 </nav>
 
-                                <h1 class="m-0"><?php //echo $member->fname . " " . $member->lname;?></h1>
+                                <h1 class="m-0"><?php echo $member->fname . " " . $member->lname;?></h1>
                             </div>
                         </div>
 
