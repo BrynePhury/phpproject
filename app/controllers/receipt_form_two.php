@@ -12,6 +12,7 @@ class Receipt_form_two extends Controller
             $feesArray = explode(',',$_POST['fee_str']);
 
             $membId = $_POST['member_id'];
+            var_dump($_POST);
 
             
 
@@ -36,8 +37,6 @@ class Receipt_form_two extends Controller
 
             $arr = $_POST['selector'];
             $n = count($arr);
-
-            
 
             $memberId= -1;
             $feeIds = array();
@@ -168,8 +167,8 @@ class Receipt_form_two extends Controller
             $amt = $_POST[$feeName];
 
             // Insert a new receipt details entry
-            $query = "INSERT INTO receipt_details (amount_paid, receipt_id) VALUES (:amt, :receiptNo)";
-            $params = array(':amt' => $amt, ':receiptNo' => $receiptNo);
+            $query = "INSERT INTO receipt_details (amount_paid, receipt_id, fee_id) VALUES (:amt, :receiptNo, :fee_id)";
+            $params = array(':amt' => $amt, ':receiptNo' => $receiptNo, 'fee_id' => $feeName);
             $db->write($query, $params);
         }
     }
