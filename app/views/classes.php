@@ -95,17 +95,15 @@
                                                                 </div>
                                                             </td>
 
-
                                                             <td>
                                                             
-                                                            <a href="http://localhost/membership/public/add_fees?class_id=<?php echo $clas->class_id; ?>" class="btn btn-success ml-3">Add Fee</a>
+                                                            <a href="http://localhost/membership/public/add_fees?class_id=<?php echo $clas->class_id; ?>" class="btn btn-success ml-3">Add</a>
                                                             </td>
 
                                                         </tr>
                                                         <?php endforeach; ?>
                                                     </tbody>
-                                                </table>
-
+                                                </table>                                              
 
 
                                                 <!-- <form id="classForm" method="post" action="http://localhost/membership/public/class_fees">

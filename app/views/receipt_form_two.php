@@ -28,26 +28,34 @@
 
                         <div class="container-fluid page__container">
 
-                        <div class="col-lg-8 card-form__body card-body">
-                                    <form id="invoiceForm" action="http://localhost/membership/public/reciept_form" method="get">
+                                <div class="col-lg-8 card-form__body card-body">
+                                    <form id="invoiceForm" action="http://localhost/membership/public/receipt_form_two" method="post">
 
                                         <div class="form-group">
-                                            <label for="amount_paid">Amount Paid:</label>
-                                            <input type="text" class="form-control" name="amount_paid" id="amount_paid" placeholder="Enter amount paid (K)..">
-                                            <div class="invalid-feedback">
-                                                Amount must be less than or equal to the selected fee amount.
-                                            </div>
+                                            <?php 
+                                            $fees = $data['fees'];
+                                            $myArray = array();
+                                            foreach ($fees as $fee): ?>
+                                                <label for="<?php echo $fee->fee_id; ?>"><?php echo $fee->fee_description; ?>:</label>
+                                                <input type="text" class="form-control" name="<?php $myArray[] = $fee->fee_id;
+                                                 echo $fee->fee_id; ?>" id="amount_paid_<?php echo $fee->fee_id; ?>" placeholder="Enter amount paid for <?php echo $fee->fee_description; ?>">
+                                                <div class="invalid-feedback">
+                                                    Amount must be less than or equal to the selected fee amount.
+                                                </div>
+                                            <?php endforeach; ?>
                                         </div>
 
+                                        <?php
+                                        $delimiter = ',';
+                                        $string = implode($delimiter, $myArray);?>
+
                                         <!-- Add the member ID as a hidden input field -->
-                                        <input type="hidden" name="member_id" value="<?php// echo $memberId; ?>">
+                                        <input type="hidden" name="member_id" value="<?php echo $memberId; ?>">
+                                        <input type="hidden" name="fee_str" value="<?php echo $string; ?>"> 
 
                                         <button type="submit" class="btn btn-primary" name="save_class">Save</button>
                                     </form>
                                 </div>
-
-                                        
-
  
                         </div>
 

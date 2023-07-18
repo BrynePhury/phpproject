@@ -68,55 +68,84 @@
                                                             type="button"><i class="material-icons">search</i></button>
                                                 </div>
 
+                                                <?php
+                                                
+                                                function getSessionNameFromDatabase($sessionCode)
+                                                {
+                                                    $db = new Database();
+                                                
+                                                    // Query the database to retrieve the session name
+                                                    $query = "SELECT session_name FROM sessions WHERE session_code = :sessionCode";
+                                                    $params = array(':sessionCode' => $sessionCode);
+                                                    $result = $db->read($query, $params);
+                                                
+                                                    if ($result && !empty($result)) {
+                                                        return $result[0]->session_name; // Return the session name
+                                                    } else {
+                                                        return null; // Return null if session name not found
+                                                    }
+                                                }
+                                                 function getMemberNameFromDatabase($memberId)
+                                                {
+                                                    $db = new Database();
+                                                
+                                                    // Query the database to retrieve the member name
+                                                    $query = "SELECT CONCAT(fname, ' ', lname) AS member_name FROM members WHERE member_id = :memberId";
+                                                    $params = array(':memberId' => $memberId);
+                                                    $result = $db->read($query, $params);
+                                                
+                                                    if ($result && !empty($result)) {
+                                                        return $result[0]->member_name; // Return the member name
+                                                    } else {
+                                                        return null; // Return null if member name not found
+                                                    }
+                                                }
+                                                
+                                                
+                                                
+                                                
+                                                ?>
+
                                                 <table class="table mb-0 thead-border-top-0">
                                                     <thead>
                                                         <tr>
-
                                                             <th>Member</th>
-
-                                                            
-                                                            <th style="width: 257px;">Session</th>
-                                                            
+                                                            <th>Session</th>
                                                             <th style="width: 24px;"></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="list"
-                                                        id="staff02">
-                                                        
+                                                    <tbody class="list" id="staff02">
                                                         <?php 
-                                                            $members = $data['invoice_members'];
-                                                            $sessions = $data['invoice_sessions'];
-                                                            $invoices = $data['invoices'];
+                                                        $receipts = $data['receipts'];
 
-                                                            if (is_array($members) && is_array($sessions)) {
-                                                                $count = count($members);
-                                                                for ($i = 0; $i < $count; $i++) {
-                                                                    $member = $members[$i];
-                                                                    $session = $sessions[$i];
-                                                                    $invoice = $invoices[$i];
-                                                                    ?>
-                                                                    <tr>
-                                                                        <td><?php echo $member->fname . " " . $member->lname; ?></td>
-                                                                        <td><?php echo $session->session_name; ?></td>
-                                                                        <td>
-                                                                            <a href="http://localhost/membership/public/view_invoice?invoice=<?php echo $invoice->invoice_no; ?>" class="btn btn-success ml-3">View</a>
-                                                                        </td>
-                                                                        <!-- Add more table cells here -->
-                                                                    </tr>
-                                                                    <?php
-                                                                }
-                                                            } else {
-                                                                // Handle the case when there are no invoices available or an error occurred
-                                                                echo "<tr><td colspan='3'>No invoices available.</td></tr>";
+                                                        if (is_array($receipts)) {
+                                                            foreach ($receipts as $receipt) {
+
+                                                                ?>
+                                                                <tr>
+                                                                <td><?php echo $receipt->fname . " " . $receipt->lname; ?></td>
+                                                                    <td><?php echo $receipt->session_name; ?></td>
+                                                                    <!-- <td><?php //echo $receipt->member_id; ?></td> -->
+                                                                    
+                                                                    <td>
+                                                            
+                                                                    <a 
+                                                                    href="http://localhost/membership/public/view_receipt?receipt=<?php echo $receipt->receipt_no; ?>"
+                                                                    class="btn btn-success ml-3">View</a>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <?php
                                                             }
-                                                            ?>
-
-
-
-
-
+                                                        } else {
+                                                            // Handle the case when there are no receipts available or an error occurred
+                                                            echo "<tr><td colspan='3'>No receipts available.</td></tr>";
+                                                        }
+                                                        ?>
                                                     </tbody>
                                                 </table>
+
+
 
                                                 
                                             </div>
