@@ -46,12 +46,6 @@
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="#">
-                                                    <span class="sidebar-menu-text">Add Member</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button"
                                                    href="classes">
                                                     <span class="sidebar-menu-text">Classes</span>
                                                 </a>
@@ -79,13 +73,13 @@
                                             id="pages_menu">
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="companies.html">
+                                                   href="classes">
                                                     <span class="sidebar-menu-text">Class Fees</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="#">
+                                                   href="classes">
                                                     <span class="sidebar-menu-text">Group Fees</span>
                                                 </a>
                                             </li>

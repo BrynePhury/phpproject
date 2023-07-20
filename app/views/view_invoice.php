@@ -117,7 +117,7 @@
                     </div>
                     <!-- // END drawer-layout__content -->
                     
-                    <?php require_once'navigation.php';?>
+                    <?php require_once'sidebar.php';?>
 
             </div>
             <!-- // END header-layout__content -->

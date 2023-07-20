@@ -1,9 +1,5 @@
 <?php require_once'header.php';?>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">
 
@@ -31,151 +27,145 @@
                         </div>
 
                         <div class="container-fluid page__container">
-                            <div class="card card-form">
+                        <div class="card card-form">
                             
-                                    <div class="row no-gutters">
-                                        
-                                        <div class="col-lg-8 card-form__body">
-
-                                            <div class="table-responsive border-bottom"
-                                                data-toggle="lists"
-                                                data-lists-values='["js-lists-values-employee-name"]'>
-
-                                                <div class="search-form search-form--light m-3">
-                                                    <input type="text"
-                                                        class="form-control search"
-                                                        placeholder="Search">
-                                                    <button class="btn"
-                                                            type="button"><i class="material-icons">search</i></button>
-                                                </div>
-
-                                                <table class="table mb-0 thead-border-top-0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Class</th>
-                                                            <th style="width: 257px;">Experienced Required</th>
-                                                            <th style="width: 257px;">Applicable Fees</th>
-                                                            <th style="width: 24px;"></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="list" id="staff02">
-                                                        <?php
-                                                        $classes = $data['classes'];
-                                                        //Here
-                                                        foreach ($classes as $clas) :
-                                                        ?>
-                                                        <tr onclick="submitForm('<?php echo $clas->class_id; ?>');">
-                                                            <td><?php echo $clas->class_name; ?></td>
-                                                            <td><?php echo $clas->experience_required; ?></td>
-                                                            
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <button class="custom-select" type="button" id="feesDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        View
-                                                                    </button>
-                                                                    <div class="dropdown-menu" aria-labelledby="feesDropdown">
-                                                                        <?php
-                                                                        $classId = $clas->class_id;
-                                                                        $fees = $this->loadFees($classId);
-                                                                        if (is_array($fees) && !empty($fees)) {
-                                                                            foreach ($fees as $fee) :
-                                                                        ?>
-                                                                        <div class="dropdown-item">
-                                                                            <?php echo $fee->fee_description; ?>
+                            <div class="row no-gutters">
+                                                                
+                                <div class="col-lg-8 card-form__body">
+                        
+                                    <div class="table-responsive border-bottom"
+                                        data-toggle="lists"
+                                        data-lists-values='["js-lists-values-employee-name"]'>
+                        
+                                                                        <div class="search-form search-form--light m-3">
+                                                                            <input type="text"
+                                                                                class="form-control search"
+                                                                                placeholder="Search">
+                                                                            <button class="btn"
+                                                                                    type="button"><i class="material-icons">search</i></button>
                                                                         </div>
-                                                                        <?php
-                                                                            endforeach;
-                                                                        } else {
-                                                                            echo "<div class='dropdown-item'>No fees available for this class.</div>";
-                                                                        }
-                                                                        ?>
+                        
+                                                                        <table class="table mb-0 thead-border-top-0">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Class</th>
+                                                                                    <th style="width: 257px;">Experienced Required</th>
+                                                                                    <th style="width: 257px;">Applicable Fees</th>
+                                                                                    <th style="width: 24px;"></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody class="list" id="staff02">
+                                                                                <?php
+                                                                                $classes = $data['classes'];
+                                                                                //Here
+                                                                                foreach ($classes as $clas) :
+                                                                                ?>
+                                                                                <tr onclick="submitForm('<?php echo $clas->class_id; ?>');">
+                                                                                    <td><?php echo $clas->class_name; ?></td>
+                                                                                    <td><?php echo $clas->experience_required; ?></td>
+                                                                                    
+                                                                                    <td>
+                                                                                        <div class="dropdown">
+                                                                                            <button class="custom-select" type="button" id="feesDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                                View
+                                                                                            </button>
+                                                                                            <div class="dropdown-menu" aria-labelledby="feesDropdown">
+                                                                                                <?php
+                                                                                                $classId = $clas->class_id;
+                                                                                                $fees = $this->loadFees($classId);
+                                                                                                if (is_array($fees) && !empty($fees)) {
+                                                                                                    foreach ($fees as $fee) :
+                                                                                                ?>
+                                                                                                <div class="dropdown-item">
+                                                                                                    <?php echo $fee->fee_description; ?>
+                                                                                                </div>
+                                                                                                <?php
+                                                                                                    endforeach;
+                                                                                                } else {
+                                                                                                    echo "<div class='dropdown-item'>No fees available for this class.</div>";
+                                                                                                }
+                                                                                                ?>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                        
+                                                                                    <td>
+                                                                                    
+                                                                                    <a href="http://localhost/membership/public/add_fees?class_id=<?php echo $clas->class_id; ?>" class="btn btn-success ml-3">Add</a>
+                                                                                    </td>
+                        
+                                                                                </tr>
+                                                                                <?php endforeach; ?>
+                                                                            </tbody>
+                                                                        </table>                                              
+                        
+                                                                        <script>
+                                                                            function submitForm(classId) {
+                                                                                document.getElementById('classIdInput').value = classId;
+                                                                                document.getElementById('classForm').submit();
+                                                                            }
+                                                                            
+                                                                            $(document).ready(function() {
+                                                                                // When a checkbox is checked/unchecked, update the dropdown button label
+                                                                                $(".dropdown-item input[type='checkbox']").change(function() {
+                                                                                    var selectedOptions = [];
+                                                                                    $(".dropdown-item input[type='checkbox']:checked").each(function() {
+                                                                                        selectedOptions.push($(this).next("label").text());
+                                                                                    });
+                                                                                    var dropdownButton = $(this).closest(".dropdown").find(".dropdown-toggle");
+                                                                                    dropdownButton.text(selectedOptions.length > 0 ? selectedOptions.join(", ") : "Select Fees");
+                                                                                });
+                                                                            });
+                        
+                                                                        </script>
+                        
+                                                                        
                                                                     </div>
-                                                                </div>
-                                                            </td>
-
-                                                            <td>
-                                                            
-                                                            <a href="http://localhost/membership/public/add_fees?class_id=<?php echo $clas->class_id; ?>" class="btn btn-success ml-3">Add</a>
-                                                            </td>
-
-                                                        </tr>
-                                                        <?php endforeach; ?>
-                                                    </tbody>
-                                                </table>                                              
-
-
-                                                <!-- <form id="classForm" method="post" action="http://localhost/membership/public/class_fees">
-                                                    <input type="hidden" id="classIdInput" name="class_id">
-                                                </form> -->
-
-                                                <script>
-                                                    function submitForm(classId) {
-                                                        document.getElementById('classIdInput').value = classId;
-                                                        document.getElementById('classForm').submit();
-                                                    }
-                                                    
-                                                    $(document).ready(function() {
-                                                        // When a checkbox is checked/unchecked, update the dropdown button label
-                                                        $(".dropdown-item input[type='checkbox']").change(function() {
-                                                            var selectedOptions = [];
-                                                            $(".dropdown-item input[type='checkbox']:checked").each(function() {
-                                                                selectedOptions.push($(this).next("label").text());
-                                                            });
-                                                            var dropdownButton = $(this).closest(".dropdown").find(".dropdown-toggle");
-                                                            dropdownButton.text(selectedOptions.length > 0 ? selectedOptions.join(", ") : "Select Fees");
-                                                        });
-                                                    });
-
-                                                </script>
-
-                                                
-                                            </div>
-
-                                        </div>
-
-                                        <script>
-                                            function saveData(classId) {
-                                                var selectedFees = []; // Array to store selected fees
-
-                                                // Get all the checkboxes
-                                                var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-
-                                                // Iterate over the checkboxes and get the values
-                                                checkboxes.forEach(function(checkbox) {
-                                                    selectedFees.push(checkbox.value);
-                                                });
-
-                                                // Create a hidden form
-                                                var form = document.createElement('form');
-                                                form.method = 'post';
-                                                form.action = 'http://localhost/membership/public/classes/save';
-
-                                                // Create an input element for each selected fee and append it to the form
-                                                selectedFees.forEach(function(feeId) {
-                                                    var input = document.createElement('input');
-                                                    input.type = 'hidden';
-                                                    input.name = 'fees[]';
-                                                    input.value = feeId;
-                                                    form.appendChild(input);
-                                                });
-
-                                                // Create an input element for the class_id and append it to the form
-                                                var classIdInput = document.createElement('input');
-                                                classIdInput.type = 'hidden';
-                                                classIdInput.name = 'class_id';
-                                                classIdInput.value = classId;
-                                                form.appendChild(classIdInput);
-
-                                                // Append the form to the document and submit it
-                                                document.body.appendChild(form);
-                                                form.submit();
-                                            }
-                                        </script>
-
-                                    </div>
+                        
+                        
+                                                                <script>
+                                                                    function saveData(classId) {
+                                                                        var selectedFees = []; // Array to store selected fees
+                        
+                                                                        // Get all the checkboxes
+                                                                        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+                        
+                                                                        // Iterate over the checkboxes and get the values
+                                                                        checkboxes.forEach(function(checkbox) {
+                                                                            selectedFees.push(checkbox.value);
+                                                                        });
+                        
+                                                                        // Create a hidden form
+                                                                        var form = document.createElement('form');
+                                                                        form.method = 'post';
+                                                                        form.action = 'http://localhost/membership/public/classes/save';
+                        
+                                                                        // Create an input element for each selected fee and append it to the form
+                                                                        selectedFees.forEach(function(feeId) {
+                                                                            var input = document.createElement('input');
+                                                                            input.type = 'hidden';
+                                                                            input.name = 'fees[]';
+                                                                            input.value = feeId;
+                                                                            form.appendChild(input);
+                                                                        });
+                        
+                                                                        // Create an input element for the class_id and append it to the form
+                                                                        var classIdInput = document.createElement('input');
+                                                                        classIdInput.type = 'hidden';
+                                                                        classIdInput.name = 'class_id';
+                                                                        classIdInput.value = classId;
+                                                                        form.appendChild(classIdInput);
+                        
+                                                                        // Append the form to the document and submit it
+                                                                        document.body.appendChild(form);
+                                                                        form.submit();
+                                                                    }
+                                                                </script>
+                        
                                 </div>
-
-                            </div>                   
+                            </div>
+                        
+                        </div>                   
                         </div>
 
                     </div>
@@ -187,6 +177,8 @@
         </div>
         <!-- // END header-layout -->
 
+       <!-- // END header-layout -->
+
         <!-- App Settings FAB -->
         <div id="app-settings">
             <app-settings layout-active="default"
@@ -197,6 +189,7 @@
       'mini': 'mini-classes.php'
     }"></app-settings>
         </div>
+    
 
         <!-- jQuery -->
         <script src="<?=ASSETS?>/vendor/jquery.min.js"></script>
@@ -245,7 +238,6 @@
         <script src="<?=ASSETS?>/vendor/jqvmap/jquery.vmap.min.js"></script>
         <script src="<?=ASSETS?>/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
         <script src="<?=ASSETS?>/js/vector-maps.js"></script>
-
     </body>
 
 </html>
