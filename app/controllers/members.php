@@ -1,9 +1,9 @@
 <?php
-class Home extends Controller
+class Members extends Controller
 {
     public function index()
     {
-        $data['page_title'] = "Home";
+        $data['page_title'] = "Members";
 
 		// Check if it's a GET request with a search query
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['searchQuery'])) {
@@ -19,7 +19,7 @@ class Home extends Controller
         // Pass $members variable to the view
         $data['members'] = $members;
 
-        $this->view("home", $data);
+        $this->view("members", $data);
     }
 
     function search()

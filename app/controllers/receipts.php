@@ -1,9 +1,9 @@
 <?php
-class Reciepts extends Controller
+class Receipts extends Controller
 {
     public function index()
     {
-        $data['page_title'] = "Reciepts";
+        $data['page_title'] = "Receipts";
 
 		$user = $this->loadModel("user");
 
@@ -12,7 +12,7 @@ class Reciepts extends Controller
 
         $data['receipts'] = $this->getAllReceipts();
 
-        $this->view("reciepts", $data);
+        $this->view("receipts", $data);
     }
 
     public function getAllReceipts()
