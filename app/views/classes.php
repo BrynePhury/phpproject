@@ -37,8 +37,6 @@
                                         
                                         <div class="col-lg-8 card-form__body">
 
-                                        
-
                                             <div class="table-responsive border-bottom"
                                                 data-toggle="lists"
                                                 data-lists-values='["js-lists-values-employee-name"]'>
@@ -174,17 +172,10 @@
                                             }
                                         </script>
 
-
-
                                     </div>
                                 </div>
 
-                                
-                            </div>
-
-                    
-
-                            
+                            </div>                   
                         </div>
 
                     </div>

@@ -89,7 +89,7 @@
                                                     <tbody>
                                                         <?php foreach ($fees as $fee) : ?>
                                                             <tr>
-                                                                <td><?php echo $fee->details_id; ?></td>
+                                                                <td><?php echo $fee->fee_description; ?></td>
                                                                 <td><?php echo $session->session_name; ?></td>
                                                                 <td class="text-right"><?php echo 'K' .  number_format($fee->amount_paid, 2); ?></td>
                                                             </tr>

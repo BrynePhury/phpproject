@@ -1,5 +1,4 @@
 <?php require_once'header.php';?>
-            <!-- // END Header -->
 
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">

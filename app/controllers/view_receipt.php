@@ -53,9 +53,12 @@ class View_receipt extends Controller
 
         $data['session'] = $session[0];
 
-        // Get the fee details from fees_list
-        $query = "SELECT * FROM receipt_details WHERE receipt_id = :receipt_id";
-        $params = array(':receipt_id' => $receiptNo);
+        // Query the database to retrieve the fees for the specified class ID
+        $query = "SELECT receipt_details.fee_id, receipt_details.amount_paid, receipt_details.receipt_id, receipt_details.details_id, fees_list.fee_description
+        FROM receipt_details
+        JOIN fees_list ON fees_list.fee_id = receipt_details.fee_id
+        ORDER BY fees_list.fee_description";
+        $params = array();
         $receiptDetails = $DB->read($query, $params);
 
         foreach ($receiptDetails as $receiptDetail) {
