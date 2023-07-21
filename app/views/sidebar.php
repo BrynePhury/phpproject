@@ -44,6 +44,12 @@
                                                     <span class="sidebar-menu-text">All Members</span>
                                                 </a>
                                             </li>
+                                            <!-- <li class="sidebar-menu-item">
+                                                <a class="sidebar-menu-button"
+                                                   href="membership_requests">
+                                                    <span class="sidebar-menu-text">Membership Requests</span>
+                                                </a>
+                                            </li> -->
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
                                                    href="classes">
