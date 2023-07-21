@@ -97,13 +97,13 @@
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="pricing.html">
+                                                   href="reports">
                                                     <span class="sidebar-menu-text">Reports</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button"
-                                                   href="edit-account.html">
+                                                   href="invoice_balances">
                                                     <span class="sidebar-menu-text">Invoice Balances</span>
                                                 </a>
                                             </li> 

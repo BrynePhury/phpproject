@@ -3,6 +3,11 @@
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">
 
+            <?php
+            $members = $data['members'];
+            $pending_members = $data['pending_members'];
+            ?>
+
                 <div class="mdk-drawer-layout js-mdk-drawer-layout"
                      data-push
                      data-responsive-width="992px">
@@ -82,13 +87,13 @@
                                         <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
                                             <div class="flex">
                                                 <div class="card-header__title mb-2">Total Members</div>
-                                                <div class="text-amount">452</div>
+                                                <div class="text-amount"><?php echo count($members)?></div>
                                             </div>
-                                            <div class="ml-3 d-flex flex-column align-items-end text-right">
+                                            <!-- <div class="ml-3 d-flex flex-column align-items-end text-right">
                                                 <a href=""
                                                    class="mb-2">View</a>
                                                 <div class="text-stats text-danger">9.6% <i class="material-icons">arrow_downward</i></div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="card-body text-muted flex d-flex align-items-center">
                                             <div class="chart w-100"
@@ -256,11 +261,11 @@
                                     <div class="card card-group-row__card">
                                         <div class="card-body d-flex flex-row align-items-center flex-0">
                                             <div class="flex">
-                                                <div class="card-header__title mb-2">Total orders</div>
-                                                <div class="text-amount">4</div>
+                                                <div class="card-header__title mb-2">Membership Requests</div>
+                                                <div class="text-amount"><?php echo count($pending_members);?></div>
                                             </div>
                                             <div class="ml-3 d-flex flex-column align-items-end text-right">
-                                                <a href=""
+                                                <a href="membership_requests"
                                                    class="mb-2">View</a>
                                                 <div class="text-stats text-success">92% <i class="material-icons">arrow_upward</i></div>
                                             </div>

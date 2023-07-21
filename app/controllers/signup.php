@@ -13,7 +13,8 @@ class Signup extends Controller
         $this->view("signup", $data);
     }
 
-    public function handleSignupForm(){
+    public function handleSignupForm()
+    {
         // Retrieve form data
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
@@ -22,6 +23,7 @@ class Signup extends Controller
         $email = $_POST['email'];
         $id_number = $_POST['id_number'];
         $cv = $_FILES['cv'];
+        $status = "Pending";
 
         // Validate file format
         $allowedExtensions = array('pdf');
@@ -32,9 +34,11 @@ class Signup extends Controller
             return;
         }
 
+        $cv['name'] = uniqid() . $cv['name'];
+
         // Insert data into the members table
-        $query = "INSERT INTO members (fname, lname, contact1, contact2, email, id_number, cv_file) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $data = array($first_name, $last_name, $contact1, $contact2, $email, $id_number, $cv['name']);
+        $query = "INSERT INTO members (fname, lname, contact1, contact2, email, id_number, cv_file,m_status) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+        $data = array($first_name, $last_name, $contact1, $contact2, $email, $id_number, $cv['name'],$status);
 
         // Create an instance of the Database class
         $db = new Database();
@@ -42,16 +46,25 @@ class Signup extends Controller
         // Insert the data into the table
         if ($db->write($query, $data)) {
 
-            echo "<script>alert('Registered Succesfully');
-                location=('http://localhost/membership/public/login');
-                </script>";
+            // Upload the CV file
+            $uploadDirectory = './uploads/';
+            if (!file_exists($uploadDirectory)) {
+                mkdir($uploadDirectory, 0777, true);
+            }
+            $destinationFilePath = $uploadDirectory . $cv['name'];
 
-            // header("Location:". ROOT . "login");
-		    // die;
+            if (is_uploaded_file($cv['tmp_name'])) {
+                if (move_uploaded_file($cv['tmp_name'], $destinationFilePath)) {
+                    echo "<script>alert('Registered Successfully'); location=('http://localhost/membership/public/login');</script>";
+                } else {
+                    echo "Error: Failed to move the file.";
+                }
+            } else {
+                echo "Error: File not uploaded.";
+            }
+
         } else {
-            echo "<script>
-                    alert('Registered Succesfully');
-                </script>";
+            echo "<script>alert('Error: Registration Failed');</script>";
         }
     }
 
