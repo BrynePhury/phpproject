@@ -93,7 +93,7 @@
                                                             </div>
                                                         </td>
                                                         <td><?php echo $member->email; ?></td>
-                                                        <td><a href="view_cv_<?php echo $member->cv_file?>" class="btn btn-success ml-3">View CV</a></td>
+                                                        <td><a href="view_cv?cv_file=<?php echo urlencode($member->cv_file); ?>" target="_blank" class="btn btn-success ml-3">View CV</a></td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             </tbody>

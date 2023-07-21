@@ -23,7 +23,7 @@ class Signup extends Controller
         $email = $_POST['email'];
         $id_number = $_POST['id_number'];
         $cv = $_FILES['cv'];
-        $status = "Pending";
+        $status = "pending";
 
         // Validate file format
         $allowedExtensions = array('pdf');

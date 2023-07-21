@@ -8,19 +8,19 @@ Class Membership_requests extends Controller
  	 	
  	 	$data['page_title'] = "Membership Requests";
 
-          $user = $this->loadModel("user");
+        $user = $this->loadModel("user");
 
-          // Get all members from the model
-          $members = $user->getAllMembers();
-  
-          // Pass $members variable to the view
-          $data['members'] = $members;
-  
-          $pending_requests = $this->getPendingRequests($members);
-  
-          $data['pending_members'] = $pending_requests;
+        // Get all members from the model
+        $members = $user->getAllMembers();
 
-
+		
+  
+        // Pass $members variable to the view
+        $data['members'] = $members;
+  
+        $pending_requests = $this->getPendingRequests($members);
+  
+        $data['pending_members'] = $pending_requests;
 
 		$this->view("membership_requests",$data);
 	}
@@ -34,6 +34,8 @@ Class Membership_requests extends Controller
 		}
 		return $req;
 	}
+
+
 
 	
 }
