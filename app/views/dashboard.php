@@ -71,7 +71,7 @@
                                             <div class="chart w-100"
                                                  style="height: 200px;">
                                                 <canvas id="totalSalesChart">
-                                                    <span style="font-size: 1rem;"><strong>Total Sales</strong> chart goes here.</span>
+                                                    <span style="font-size: 1rem;"><strong>Total Revenue</strong> chart goes here.</span>
                                                 </canvas>
                                             </div>
                                         </div>
@@ -81,7 +81,7 @@
                                     <div class="card card-group-row__card">
                                         <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
                                             <div class="flex">
-                                                <div class="card-header__title mb-2">Total visitors</div>
+                                                <div class="card-header__title mb-2">Total Members</div>
                                                 <div class="text-amount">452</div>
                                             </div>
                                             <div class="ml-3 d-flex flex-column align-items-end text-right">
