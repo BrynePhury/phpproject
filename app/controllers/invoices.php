@@ -53,7 +53,7 @@ class Invoices extends Controller
         $user = $this->loadModel("user");
 
         // Get all members from the model
-        $data['members'] = $user->getAllMembers();
+        $data['members'] = $this->getAcceptedRequests($user->getAllMembers());
 
         $data['invoices'] = $invoices;
         $data['invoice_members'] = $membersArr;
@@ -61,6 +61,16 @@ class Invoices extends Controller
 
         $this->view("invoices", $data);
     }
+
+    private function getAcceptedRequests($members) {
+		$req = array();
+		foreach ($members as $member) {
+			if ($member->m_status === 'accepted') {
+				$req[] = $member;
+			}
+		}
+		return $req;
+	}
 
 
     public function generateInvoices($members)

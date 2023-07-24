@@ -40,9 +40,13 @@
 
                                         <label class="sr-only"
                                                for="inlineFormRole">Role</label>
-                                        
 
-                                        
+                                            <button type="button" class="btn btn-success ml-3" id="btnAccept" disabled>Accept</button>
+                                            <button type="button" class="btn btn-success ml-3" id="btnDelete" disabled>Delete</button>
+                                    </form>
+                                    <form id="actionForm" action="member_req" method="post" style="display: none;">
+                                        <input type="hidden" name="action" id="actionInput">
+                                        <input type="hidden" name="selectedMembers" id="selectedMembersInput">
                                     </form>
                                 </div>
 
@@ -52,7 +56,6 @@
 
                                      <?php
                                         $members = $data['pending_members'];
-
                                         ?>
 
                                         <table class="table mb-0 thead-border-top-0">
@@ -71,42 +74,123 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="list" id="staff">
-                                                <?php foreach ($members as $member) : ?>
+                                                <?php if (empty($members)) : ?>
                                                     <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input js-check-selected-row" id="customCheck1_<?php echo $member->fname . " " . $member->lname; ?>">
-                                                                <label class="custom-control-label" for="customCheck1_<?php echo $member->fname . " " . $member->lname; ?>"><span class="text-hide">Check</span></label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="media align-items-center">
-                                                                <div class="media-body">
-                                                                    <span class="js-lists-values-employee-name"><?php echo $member->fname . " " . $member->lname; ?></span>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="media align-items-center">
-                                                                <a href=""><?php echo $member->contact1; ?></a>
-                                                                <a href="#" class="rating-link"><i class="material-icons ml-2">star</i></a>
-                                                            </div>
-                                                        </td>
-                                                        <td><?php echo $member->email; ?></td>
-                                                        <td><a href="view_cv?cv_file=<?php echo urlencode($member->cv_file); ?>" target="_blank" class="btn btn-success ml-3">View CV</a></td>
+                                                        <td colspan="5">No members available.</td>
                                                     </tr>
-                                                <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <?php foreach ($members as $member) : ?>
+                                                        <tr data-member-id="<?php echo $member->id_number; ?>">
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input js-check-selected-row" id="customCheck1_<?php echo $member->fname . " " . $member->lname; ?>">
+                                                                    <label class="custom-control-label" for="customCheck1_<?php echo $member->fname . " " . $member->lname; ?>"><span class="text-hide">Check</span></label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="media align-items-center">
+                                                                    <div class="media-body">
+                                                                        <span class="js-lists-values-employee-name"><?php echo $member->fname . " " . $member->lname; ?></span>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="media align-items-center">
+                                                                    <a href=""><?php echo $member->contact1; ?></a>
+                                                                    <a href="#" class="rating-link"><i class="material-icons ml-2">star</i></a>
+                                                                </div>
+                                                            </td>
+                                                            <td><?php echo $member->email; ?></td>
+                                                            <td><a href="view_cv?cv_file=<?php echo urlencode($member->cv_file); ?>" target="_blank" class="btn btn-success ml-3">View CV</a></td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
                                             </tbody>
+
                                         </table>
 
                                 </div>
 
-                                <div class="card-body text-right">
+                                <!-- <div class="card-body text-right">
                                     15 <span class="text-muted">of 1,430</span> <a href="#"
                                        class="text-muted-light"><i class="material-icons ml-1">arrow_forward</i></a>
-                                </div>
+                                </div> -->
 
                             </div>
+                            <!-- Add a common class "selectable-row" to the table rows that need to be selectable -->
+
+                            <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                const tableBody = document.getElementById("staff");
+                                const btnAccept = document.getElementById("btnAccept");
+                                const btnDelete = document.getElementById("btnDelete");
+                                const toggleAllCheckbox = document.getElementById("customCheckAll");
+
+                                // Function to update button states based on selection
+                                function updateButtons() {
+                                const selectedRows = tableBody.querySelectorAll("tr.selected");
+                                const disableButtons = selectedRows.length === 0;
+
+                                btnAccept.disabled = disableButtons;
+                                btnDelete.disabled = disableButtons;
+                                }
+
+                                // Function to handle form submission
+                                function openNewPage(action) {
+                                const selectedRows = tableBody.querySelectorAll("tr.selected");
+                                const selectedMembers = Array.from(selectedRows).map(row => row.dataset.memberId);
+
+                                // Prepare URL with selected members and action identifier
+                                const baseUrl = "process.php"; // Replace with your server-side processing script
+                                const urlParams = new URLSearchParams();
+                                urlParams.set("action", action);
+                                urlParams.set("selectedMembers", JSON.stringify(selectedMembers));
+
+                                // Open the new page with the URL
+                                const newPageUrl = `http://localhost/membership/public/member_req_action?${urlParams.toString()}`;
+                                window.location.href = newPageUrl;
+                                }
+
+                                // Event listener for checkbox clicks
+                                tableBody.addEventListener("click", function (event) {
+                                if (event.target.tagName === "INPUT" && event.target.type === "checkbox") {
+                                    const row = event.target.closest("tr");
+                                    if (row) {
+                                    row.classList.toggle("selected");
+                                    updateButtons();
+                                    }
+                                }
+                                });
+
+                                // Event listener for "Toggle all" checkbox
+                                toggleAllCheckbox.addEventListener("change", function () {
+                                const isChecked = toggleAllCheckbox.checked;
+                                const checkboxes = tableBody.querySelectorAll("input[type='checkbox']");
+                                checkboxes.forEach(checkbox => {
+                                    checkbox.checked = isChecked;
+                                    const row = checkbox.closest("tr");
+                                    if (isChecked) {
+                                    row.classList.add("selected");
+                                    } else {
+                                    row.classList.remove("selected");
+                                    }
+                                });
+                                updateButtons();
+                                });
+
+                                // Event listener for "Accept" button click
+                                btnAccept.addEventListener("click", function () {
+                                openNewPage("accept");
+                                });
+
+                                // Event listener for "Delete" button click
+                                btnDelete.addEventListener("click", function () {
+                                openNewPage("delete");
+                                });
+                            });
+                            </script>
+
+
                         </div>
 
                     </div>
