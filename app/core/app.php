@@ -2,7 +2,7 @@
 
 Class App 
 {
-	private $controller = "members";
+	private $controller = "member_dashboard";
 	private $method = "index";
 	private $params = [];
 

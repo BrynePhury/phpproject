@@ -5,7 +5,7 @@
 
             <?php
             $members = $data['members'];
-            $pending_members = $data['pending_members'];
+            // $pending_members = $data['pending_members'];
             ?>
 
                 <div class="mdk-drawer-layout js-mdk-drawer-layout"
@@ -26,7 +26,7 @@
                                     <h1 class="m-0">Dashboard</h1>
                                 </div>
                                 <div class="flatpickr-wrapper ml-3">
-                                    <div id="recent_orders_date"
+                                    <!-- <div id="recent_orders_date"
                                          data-toggle="flatpickr"
                                          data-flatpickr-wrap="true"
                                          data-flatpickr-mode="range"
@@ -39,7 +39,7 @@
                                                type="hidden"
                                                value="13/03/2018 to 20/03/2018"
                                                data-input>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -51,14 +51,14 @@
                                     <div class="card card-group-row__card">
                                         <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
                                             <div class="flex">
-                                                <div class="card-header__title mb-2">Total sales</div>
-                                                <div class="text-amount">&dollar;82,99</div>
+                                                <div class="card-header__title mb-2">Total Balance</div>
+                                                <div class="text-amount">K82,99</div>
                                             </div>
-                                            <div class="ml-3 d-flex flex-column align-items-end text-right">
+                                            <!-- <div class="ml-3 d-flex flex-column align-items-end text-right">
                                                 <a href=""
                                                    class="mb-2">View</a>
                                                 <div class="text-stats text-success">2.6% <i class="material-icons">arrow_upward</i></div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="card-body flex-0">
                                             <small class="d-flex align-items-center font-weight-bold text-muted mb-1">
@@ -86,14 +86,14 @@
                                     <div class="card card-group-row__card">
                                         <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
                                             <div class="flex">
-                                                <div class="card-header__title mb-2">Total Members</div>
-                                                <div class="text-amount"><?php echo count($members)?></div>
+                                                <div class="card-header__title mb-2">Receipts</div>
+                                                <div class="text-amount"></div>
                                             </div>
-                                            <!-- <div class="ml-3 d-flex flex-column align-items-end text-right">
-                                                <a href=""
+                                            <div class="ml-3 d-flex flex-column align-items-end text-right">
+                                                <a href="receipts"
                                                    class="mb-2">View</a>
-                                                <div class="text-stats text-danger">9.6% <i class="material-icons">arrow_downward</i></div>
-                                            </div> -->
+                                                <!-- <div class="text-stats text-danger"><i class="material-icons">arrow_downward</i></div> -->
+                                            </div>
                                         </div>
                                         <div class="card-body text-muted flex d-flex align-items-center">
                                             <div class="chart w-100"
@@ -108,14 +108,14 @@
                                 <div class="col-lg-4 col-md-12 card-group-row__col">
                                     <div class="card card-group-row__card">
                                         <div class="card-body d-flex flex-row align-items-center flex-0 border-bottom">
-                                            <div class="flex">
-                                                <div class="card-header__title mb-2">Repeat customer</div>
-                                                <div class="text-amount">5.43%</div>
+                                        <div class="flex">
+                                                <div class="card-header__title mb-2">Invoices</div>
+                                                <div class="text-amount"></div>
                                             </div>
                                             <div class="ml-3 d-flex flex-column align-items-end text-right">
-                                                <a href=""
+                                                <a href="invoices"
                                                    class="mb-2">View</a>
-                                                <div class="text-stats text-success">2.6% <i class="material-icons">arrow_upward</i></div>
+                                                <!-- <div class="text-stats text-danger"><i class="material-icons">arrow_downward</i></div> -->
                                             </div>
                                         </div>
                                         <div class="card-body text-muted flex d-flex align-items-center">
@@ -261,13 +261,13 @@
                                     <div class="card card-group-row__card">
                                         <div class="card-body d-flex flex-row align-items-center flex-0">
                                             <div class="flex">
-                                                <div class="card-header__title mb-2">Membership Requests</div>
-                                                <div class="text-amount"><?php echo count($pending_members);?></div>
+                                                <div class="card-header__title mb-2"> Total Applicants</div>
+                                                <div class="text-amount"></div>
                                             </div>
                                             <div class="ml-3 d-flex flex-column align-items-end text-right">
                                                 <a href="membership_requests"
                                                    class="mb-2">View</a>
-                                                <div class="text-stats text-success">92% <i class="material-icons">arrow_upward</i></div>
+                                                <!-- <div class="text-stats text-success">92% <i class="material-icons">arrow_upward</i></div> -->
                                             </div>
                                         </div>
                                         <div class="card-body text-muted flex d-flex align-items-center">
@@ -284,13 +284,13 @@
                                     <div class="card card-group-row__card">
                                         <div class="card-body d-flex flex-row align-items-center flex-0">
                                             <div class="flex">
-                                                <div class="card-header__title mb-2">Conversion rate</div>
+                                                <div class="card-header__title mb-2">Total in lives</div>
                                                 <div class="text-amount">5.63%</div>
                                             </div>
                                             <div class="ml-3 d-flex flex-column align-items-end text-right">
                                                 <a href=""
                                                    class="mb-2">View</a>
-                                                <div class="text-stats text-success">3.6% <i class="material-icons">arrow_upward</i></div>
+                                                <!-- <div class="text-stats text-success">3.6% <i class="material-icons">arrow_upward</i></div> -->
                                             </div>
                                         </div>
                                         <div class="card-body d-flex flex-column justify-content-center">
@@ -326,13 +326,13 @@
                                     <div class="card card-group-row__card">
                                         <div class="card-body d-flex flex-row align-items-center flex-0">
                                             <div class="flex">
-                                                <div class="card-header__title mb-2">Average order value</div>
+                                                <div class="card-header__title mb-2">Total Balances</div>
                                                 <div class="text-amount">&dollar;36.23</div>
                                             </div>
                                             <div class="ml-3 d-flex flex-column align-items-end text-right">
                                                 <a href=""
                                                    class="mb-2">View</a>
-                                                <div class="text-stats text-success">6.7% <i class="material-icons">arrow_upward</i></div>
+                                                <!-- <div class="text-stats text-success">6.7% <i class="material-icons">arrow_upward</i></div> -->
                                             </div>
                                         </div>
                                         <div class="card-body text-muted flex d-flex align-items-center">

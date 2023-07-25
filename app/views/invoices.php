@@ -21,30 +21,35 @@
                                     <h1 class="m-0">Invoices</h1>
                                 </div>
                                 
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="membersDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Create Invoice
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="membersDropdown">
-                                        <form action="http://localhost/membership/public/invoices" method="get">
-                                            <?php
-                                            $members = $data['members'];
-                                            if (is_array($members) && !empty($members)) {
-                                                foreach ($members as $member) {
-                                                    echo '<div class="dropdown-item">';
-                                                    echo '<input class="form-check-input" type="checkbox" id="member_' . $member->id_number . '" name="members[]" value="' . $member->id_number . '">';
-                                                    echo '<label class="form-check-label" for="member_' . $member->id_number . '">' . $member->fname . " " . $member->lname . '</label>';
-                                                    echo '</div>';
-                                                }
-                                            } else {
-                                                echo '<div class="dropdown-item">No members available</div>';
-                                            }
-                                            ?>
-                                            <div class="dropdown-divider"></div>
-                                            <button type="submit" class="btn btn-primary">Generate</button>
-                                        </form>
-                                    </div>
-                                </div>
+                                <?php
+                                    $isAdmin = !$data['is_user'];
+                                    ?>
+                                    <?php if ($isAdmin): ?>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="membersDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Create Invoice
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="membersDropdown">
+                                                <form action="http://localhost/membership/public/invoices" method="get">
+                                                    <?php
+                                                    $members = $data['members'];
+                                                    if (is_array($members) && !empty($members)) {
+                                                        foreach ($members as $member) {
+                                                            echo '<div class="dropdown-item">';
+                                                            echo '<input class="form-check-input" type="checkbox" id="member_' . $member->id_number . '" name="members[]" value="' . $member->id_number . '">';
+                                                            echo '<label class="form-check-label" for="member_' . $member->id_number . '">' . $member->fname . " " . $member->lname . '</label>';
+                                                            echo '</div>';
+                                                        }
+                                                    } else {
+                                                        echo '<div class="dropdown-item">No members available</div>';
+                                                    }
+                                                    ?>
+                                                    <div class="dropdown-divider"></div>
+                                                    <button type="submit" class="btn btn-primary">Generate</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
 
 
                                 <script>
@@ -108,7 +113,7 @@
                                                     $sessions = $data['invoice_sessions'];
                                                     $invoices = $data['invoices'];
 
-                                                    if (is_array($members) && is_array($sessions)) {
+                                                    if (is_array($members) && is_array($sessions) && !empty($invoices)) {
                                                         $count = count($members);
                                                         for ($i = 0; $i < $count; $i++) {
                                                             $member = $members[$i];

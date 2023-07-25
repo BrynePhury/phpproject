@@ -19,36 +19,50 @@ class Invoices extends Controller
             exit;
         }
 
-        $invoices = $this->loadInvoices();
+        if (isset($_SESSION['user'])){
 
-        $membersArr = array();
-        $sessionsArr = array();
+            $mem = $_SESSION['user'];
+            $data['is_user'] = true;
 
-        if (is_array($invoices)) {
-            $DB = new Database();
+            $invoices = $this->loadInvoice($mem->id_number);
 
-            foreach ($invoices as $invoice) {
-                $id_number = $invoice->member_id;
+        } else {
 
-                $query = "SELECT * FROM members WHERE id_number = :id_number LIMIT 1";
-                $params = array(':id_number' => $id_number);
-                $member = $DB->read($query, $params);
+            $invoices = $this->loadInvoices();
+            $data['is_user'] = false;
 
-                if ($member) {
-                    $membersArr[] = $member[0];
-                }
+        }
 
-                $session_code = $invoice->session_code;
+            $membersArr = array();
+            $sessionsArr = array();
 
-                $query = "SELECT * FROM m_sessions WHERE session_code = :session_code LIMIT 1";
-                $params = array(':session_code' => $session_code);
-                $session = $DB->read($query, $params);
+            if (is_array($invoices)) {
+                $DB = new Database();
 
-                if ($session) {
-                    $sessionsArr[] = $session[0];
+                foreach ($invoices as $invoice) {
+                    $id_number = $invoice->member_id;
+
+                    $query = "SELECT * FROM members WHERE id_number = :id_number LIMIT 1";
+                    $params = array(':id_number' => $id_number);
+                    $member = $DB->read($query, $params);
+
+                    if ($member) {
+                        $membersArr[] = $member[0];
+                    }
+
+                    $session_code = $invoice->session_code;
+
+                    $query = "SELECT * FROM m_sessions WHERE session_code = :session_code LIMIT 1";
+                    $params = array(':session_code' => $session_code);
+                    $session = $DB->read($query, $params);
+
+                    if ($session) {
+                        $sessionsArr[] = $session[0];
+                    }
                 }
             }
-        }
+        
+
 
         $user = $this->loadModel("user");
 
@@ -185,6 +199,13 @@ class Invoices extends Controller
         $query = "SELECT * FROM invoices";
         return $DB->read($query);
     }
+    public function loadInvoice($member_id)
+        {
+            $DB = new Database();
+            $query = "SELECT * FROM invoices where member_id = :member_id";
+            $params = array(':member_id' => $member_id);
+            return $DB->read($query,$params);
+        }
 
     private function generateInvoiceNumber()
     {

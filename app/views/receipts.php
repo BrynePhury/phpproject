@@ -23,26 +23,33 @@
                                     <h1 class="m-0">Reciepts</h1>
                                 </div>
                                 
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="membersDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Generate Receipt
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="membersDropdown">
-                                        <?php
-                                        $members = $data['members'];
-                                        if (is_array($members) && !empty($members)) {
-                                            foreach ($members as $member) {
-                                                $memberId = $member->id_number;
-                                                echo '<a class="dropdown-item" href="http://localhost/membership/public/reciept_form?member_id=' . $memberId . '">';
-                                                echo $member->fname . " " . $member->lname;
-                                                echo '</a>';
-                                            }
-                                        } else {
-                                            echo '<div class="dropdown-item">No members available</div>';
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
+                                <?php
+                                    $isAdmin = !$data['is_user'];
+                                    ?>
+
+                                    <?php if ($isAdmin): ?>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="membersDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Generate Receipt
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="membersDropdown">
+                                                <?php
+                                                $members = $data['members'];
+                                                if (is_array($members) && !empty($members)) {
+                                                    foreach ($members as $member) {
+                                                        $memberId = $member->id_number;
+                                                        echo '<a class="dropdown-item" href="http://localhost/membership/public/reciept_form?member_id=' . $memberId . '">';
+                                                        echo $member->fname . " " . $member->lname;
+                                                        echo '</a>';
+                                                    }
+                                                } else {
+                                                    echo '<div class="dropdown-item">No members available</div>';
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+
 
 
 
