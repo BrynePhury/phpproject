@@ -5,6 +5,11 @@ class View_receipt extends Controller
     {
         $data['page_title'] = "View Receipt";
 
+        if (!isset($_SESSION['user'])){
+			echo "<script>
+                    location=('http://localhost/membership_members/public/login');
+                </script>";
+		}
 
         // Get the invoice number from the $_GET global
         $receiptNo = $_GET['receipt'];

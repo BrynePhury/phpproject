@@ -6,6 +6,12 @@ class Invoices extends Controller
     {
         $data['page_title'] = "Invoices";
 
+        if (!isset($_SESSION['user'])){
+			echo "<script>
+                    location=('http://localhost/membership_members/public/login');
+                </script>";
+		}
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['members'])) {
             // Get the class ID and members from the URL parameters
             $membersString = $_GET['members'];

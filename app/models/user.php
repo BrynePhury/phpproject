@@ -94,8 +94,7 @@ Class User
 	function logout()
 	{
 		//logged in
-		unset($_SESSION['user_name']);
-		unset($_SESSION['user_url']);
+		unset($_SESSION['user']);
 
 		header("Location:". ROOT . "login");
 		die;

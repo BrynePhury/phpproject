@@ -6,6 +6,12 @@ class Signup extends Controller
     {
         $data['page_title'] = "Signup";
 
+        if (!isset($_SESSION['user'])){
+			echo "<script>
+                    location=('http://localhost/membership_members/public/login');
+                </script>";
+		}
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
             $this->handleSignupForm();
         }

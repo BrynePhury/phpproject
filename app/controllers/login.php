@@ -28,9 +28,6 @@ Class Login extends Controller
         $email = $_POST['email'];
         // $password = $_POST['password'];
 
-        // Perform the necessary validation and authentication
-        // You can add your own logic here to validate the login credentials
-
         // Example: Perform authentication using a database query
         $query = "SELECT * FROM members WHERE email = :email limit 1";
         $data = [
@@ -49,7 +46,7 @@ Class Login extends Controller
                 $_SESSION['user'] = $user[0];
                     
                 echo "<script>alert('Log in Success');
-                    location=('http://localhost/membership/public/member_dashboard');
+                    location=('http://localhost/membership_members/public/member_dashboard');
                     </script>";
 
                 // Redirect to the desired page
@@ -64,7 +61,7 @@ Class Login extends Controller
 
         } else {
             echo "<script>alert('Not Accepted');
-                    location=('http://localhost/membership/public/login');
+                    location=('http://localhost/membership_members/public/login');
                     </script>";
 
                 die;

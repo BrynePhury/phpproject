@@ -5,6 +5,12 @@ class Receipts extends Controller
     {
         $data['page_title'] = "Receipts";
 
+        if (!isset($_SESSION['user'])){
+			echo "<script>
+                    location=('http://localhost/membership_members/public/login');
+                </script>";
+		}
+
 		$user = $this->loadModel("user");
 
         // Get all members from the model

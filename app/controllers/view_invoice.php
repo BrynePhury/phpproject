@@ -6,6 +6,12 @@ class View_invoice extends Controller
     {
         $data['page_title'] = "View Invoice";
 
+        if (!isset($_SESSION['user'])){
+			echo "<script>
+                    location=('http://localhost/membership_members/public/login');
+                </script>";
+		}
+
         // Get the invoice number from the $_GET global
         $invoiceNo = $_GET['invoice'];
 

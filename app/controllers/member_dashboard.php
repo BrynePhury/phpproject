@@ -13,6 +13,13 @@ Class Member_dashboard extends Controller
         // Pass $members variable to the view
         $data['members'] = $members;
 
+		if (!isset($_SESSION['user'])){
+			echo "<script>
+                    location=('http://localhost/membership_members/public/login');
+                </script>";
+		}
+
+
 		// $pending_requests = $this->getPendingRequests($members);
 
 		// $data['pending_members'] = $pending_requests;

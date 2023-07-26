@@ -2,6 +2,8 @@
 <html lang="en"
       dir="ltr">
 
+    <?php $member = $_SESSION['user']; ?>
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible"
@@ -366,29 +368,32 @@
                                        data-toggle="dropdown"
                                        data-caret="false">
                                         <span class="mr-1 d-flex-inline">
-                                            <span class="text-light">Adrian D.</span>
+                                            <span class="text-light"><?php echo $member->fname . " " . $member->lname[0] . ".";?></span>
                                         </span>
-                                        <img src="assets/images/avatar/demi.png"
+                                        <img src="<?php $originalString = $member->photo;
+                                                    $modifiedString = substr($originalString, 2);
+                                                    echo $modifiedString;?>"
                                              class="rounded-circle"
                                              width="32"
                                              alt="Frontted">
                                     </a>
+                                    
                                     <div id="account_menu"
                                          class="dropdown-menu dropdown-menu-right">
                                         <div class="dropdown-item-text dropdown-item-text--lh">
-                                            <div><strong>Adrian Demian</strong></div>
-                                            <div class="text-muted">@adriandemian</div>
+                                            <div><strong><?php echo $member->fname . " " . $member->lname; ?></strong></div>
                                         </div>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item"
                                            href="fixed-dashboard.html"><i class="material-icons">dvr</i> Dashboard</a>
                                         <a class="dropdown-item"
-                                           href="fixed-profile.html"><i class="material-icons">account_circle</i> My profile</a>
+                                           href="account_info"><i class="material-icons">account_circle</i> My profile</a>
                                         <a class="dropdown-item"
-                                           href="fixed-edit-account.html"><i class="material-icons">edit</i> Edit account</a>
+                                           href="change_password"><i class="material-icons">edit</i> Change Password</a>
+                                        
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item"
-                                           href="fixed-login.html"><i class="material-icons">exit_to_app</i> Logout</a>
+                                           href="logout"><i class="material-icons">exit_to_app</i> Logout</a>
                                     </div>
                                 </li>
                             </ul>
