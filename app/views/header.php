@@ -385,7 +385,7 @@
                                         </div>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item"
-                                           href="fixed-dashboard.html"><i class="material-icons">dvr</i> Dashboard</a>
+                                           href="dashboard"><i class="material-icons">dvr</i> Dashboard</a>
                                         <a class="dropdown-item"
                                            href="account_info"><i class="material-icons">account_circle</i> My profile</a>
                                         <a class="dropdown-item"

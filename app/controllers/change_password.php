@@ -12,6 +12,10 @@ class Change_password extends Controller
                 </script>";
 		}
 
+        if($_SERVER["REQUEST_METHOD"] === "POST"){
+            var_dump($_POST);
+        }
+
 
         $this->view("change_password", $data);
     }
